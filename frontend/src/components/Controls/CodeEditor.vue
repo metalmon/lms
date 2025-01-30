@@ -30,14 +30,12 @@
 import { useDark } from '@vueuse/core'
 import ace from 'ace-builds'
 import 'ace-builds/src-min-noconflict/ext-searchbox'
-import 'ace-builds/src-min-noconflict/theme-chrome'
-import 'ace-builds/src-min-noconflict/theme-twilight'
+import 'ace-builds/src-min-noconflict/theme-tomorrow'
+import 'ace-builds/src-min-noconflict/theme-dracula'
 import { PropType, onMounted, ref, watch } from 'vue'
 import { Button } from 'frappe-ui'
 
-const isDark = useDark({
-	attribute: 'data-theme',
-})
+const isDark = useDark()
 
 const props = defineProps({
 	modelValue: {
@@ -148,7 +146,7 @@ function resetEditor(value: string, resetHistory = false) {
 	value = getModelValue()
 	aceEditor?.setValue(value)
 	aceEditor?.clearSelection()
-	aceEditor?.setTheme(isDark.value ? 'ace/theme/twilight' : 'ace/theme/chrome')
+	aceEditor?.setTheme(isDark.value ? 'ace/theme/dracula' : 'ace/theme/tomorrow')
 	props.autofocus && aceEditor?.focus()
 	if (resetHistory) {
 		aceEditor?.session.getUndoManager().reset()
@@ -156,7 +154,7 @@ function resetEditor(value: string, resetHistory = false) {
 }
 
 watch(isDark, () => {
-	aceEditor?.setTheme(isDark.value ? 'ace/theme/twilight' : 'ace/theme/chrome')
+	aceEditor?.setTheme(isDark.value ? 'ace/theme/dracula' : 'ace/theme/tomorrow')
 })
 
 watch(
@@ -181,24 +179,72 @@ defineExpose({ resetEditor })
 	width: 100%;
 	border-radius: 5px;
 	overscroll-behavior: none;
+	@apply bg-white dark:bg-gray-900;
 }
+
+.editor :deep(.ace_gutter) {
+	@apply bg-gray-50 dark:bg-gray-800;
+	@apply text-gray-600 dark:text-gray-400;
+	@apply border-r border-gray-200 dark:border-gray-700;
+}
+
+.editor :deep(.ace_print-margin) {
+	@apply hidden;
+}
+
 .editor :deep(.ace_scrollbar-h) {
 	display: none;
 }
+
+.editor :deep(.ace_content) {
+	@apply bg-white dark:bg-gray-900;
+}
+
+.editor :deep(.ace_text-layer) {
+	@apply text-gray-900 dark:text-gray-100;
+}
+
+.editor :deep(.ace_line) {
+	@apply text-gray-900 dark:text-gray-100;
+}
+
+.editor :deep(.ace_active-line) {
+	@apply bg-gray-50 dark:bg-gray-800;
+}
+
+.editor :deep(.ace_gutter-active-line) {
+	@apply bg-gray-100 dark:bg-gray-700;
+}
+
+.editor :deep(.ace_cursor) {
+	@apply text-gray-900 dark:text-gray-100;
+	@apply border-gray-900 dark:border-gray-100;
+}
+
+.editor :deep(.ace_marker-layer .ace_selection) {
+	@apply bg-gray-200 dark:bg-gray-700;
+}
+
 .editor :deep(.ace_search) {
-	@apply dark:bg-gray-800 dark:text-gray-200;
-	@apply dark:border-gray-800;
+	@apply bg-white dark:bg-gray-800;
+	@apply text-gray-900 dark:text-gray-200;
+	@apply border-gray-200 dark:border-gray-700;
 }
+
 .editor :deep(.ace_searchbtn) {
-	@apply dark:bg-gray-800 dark:text-gray-200;
-	@apply dark:border-gray-800;
+	@apply bg-white dark:bg-gray-800;
+	@apply text-gray-900 dark:text-gray-200;
+	@apply border-gray-200 dark:border-gray-700;
 }
+
 .editor :deep(.ace_button) {
-	@apply dark:bg-gray-800 dark:text-gray-200;
+	@apply bg-white dark:bg-gray-800;
+	@apply text-gray-900 dark:text-gray-200;
 }
 
 .editor :deep(.ace_search_field) {
-	@apply dark:bg-gray-900 dark:text-gray-200;
-	@apply dark:border-gray-800;
+	@apply bg-white dark:bg-gray-900;
+	@apply text-gray-900 dark:text-gray-200;
+	@apply border-gray-200 dark:border-gray-700;
 }
 </style>
