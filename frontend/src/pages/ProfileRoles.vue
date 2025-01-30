@@ -30,6 +30,12 @@
 				type="checkbox"
 				@change.stop="changeRole('lms_student')"
 			/>
+			<FormControl
+				:label="__('Instructor')"
+				v-model="instructor"
+				type="checkbox"
+				@change.stop="changeRole('instructor')"
+			/>
 		</div>
 	</div>
 </template>
@@ -42,6 +48,7 @@ const moderator = ref(false)
 const course_creator = ref(false)
 const batch_evaluator = ref(false)
 const lms_student = ref(false)
+const instructor = ref(false)
 
 const props = defineProps({
 	profile: {
@@ -49,6 +56,14 @@ const props = defineProps({
 		required: true,
 	},
 })
+
+const roleRefs = {
+	moderator,
+	course_creator,
+	batch_evaluator,
+	lms_student,
+	instructor
+}
 
 const roles = createResource({
 	url: 'lms.lms.utils.get_roles',
@@ -64,9 +79,10 @@ const roles = createResource({
 			'course_creator',
 			'batch_evaluator',
 			'lms_student',
+			'instructor'
 		]
 		for (let role of roles) {
-			if (data[role]) eval(role).value = true
+			if (data[role]) roleRefs[role].value = true
 		}
 	},
 })
@@ -86,7 +102,7 @@ const changeRole = (role) => {
 	updateRole.submit(
 		{
 			role: convertToTitleCase(role.split('_').join(' ')),
-			value: eval(role).value,
+			value: roleRefs[role].value,
 		},
 		{
 			onSuccess(data) {
