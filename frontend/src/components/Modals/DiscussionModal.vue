@@ -93,10 +93,10 @@ const submitTopic = (close) => {
 		{
 			validate() {
 				if (!topic.title) {
-					return 'Title cannot be empty.'
+					return __('Title cannot be empty.')
 				}
 				if (!topic.reply) {
-					return 'Reply cannot be empty.'
+					return __('Reply cannot be empty.')
 				}
 			},
 			onSuccess(data) {
@@ -115,7 +115,7 @@ const submitTopic = (close) => {
 				)
 			},
 			onError(err) {
-				showToast('Error', err.message, 'x')
+				showToast(__('Error'), err.message, 'x')
 			},
 		}
 	)

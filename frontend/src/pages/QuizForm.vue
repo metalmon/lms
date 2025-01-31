@@ -383,7 +383,7 @@ const questionColumns = computed(() => {
 		},
 		{
 			label: __('Question'),
-			key: __('question_detail'),
+			key: 'question_detail',
 			width: '40rem',
 		},
 		{

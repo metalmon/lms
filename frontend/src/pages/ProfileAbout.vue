@@ -139,7 +139,7 @@ const shareOnSocial = (badge, medium) => {
 	const url = encodeURIComponent(
 		`${window.location.origin}/lms/badges/${badge.badge}/${props.profile.data?.email}`
 	)
-	const summary = `I am happy to announce that I earned the ${
+	const summary = __('I am happy to announce that I earned the') + ` ${
 		badge.badge
 	} badge on ${dayjs(badge.issued_on).format('DD MMM YYYY')} at ${
 		branding.data?.app_name

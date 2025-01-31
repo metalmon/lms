@@ -158,7 +158,7 @@
 				<div class="mt-20">
 					<Discussions
 						v-if="allowDiscussions"
-						:title="'Questions'"
+						:title="__('Questions')"
 						:doctype="'Course Lesson'"
 						:docname="lesson.data.name"
 						:key="lesson.data.name"
@@ -305,7 +305,7 @@ const progress = createResource({
 })
 
 const breadcrumbs = computed(() => {
-	let items = [{ label: 'Courses', route: { name: 'Courses' } }]
+	let items = [{ label: __('Courses'), route: { name: 'Courses' } }]
 	items.push({
 		label: lesson?.data?.course_title,
 		route: { name: 'CourseDetail', params: { courseName: props.courseName } },

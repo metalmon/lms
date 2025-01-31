@@ -39,7 +39,7 @@ const addFile = (file) => {
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (!['jpg', 'jpeg', 'png', 'mp4', 'mov', 'mp3', 'pdf'].includes(extension)) {
-		return 'Only image and video files are allowed.'
+		return __('Only image and video files are allowed.')
 	}
 }
 

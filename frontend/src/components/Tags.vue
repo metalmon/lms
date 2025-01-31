@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="mb-1.5 text-sm text-gray-700">
-			{{ __(label) }}
+			{{ label }}
 		</div>
 		<div class="flex items-center">
 			{{ tags }}
@@ -31,7 +31,7 @@ const props = defineProps({
 	},
 	label: {
 		type: String,
-		default: 'Tags',
+		default: __('Tags'),
 	},
 })
 let tags = ref(props.modelValue)

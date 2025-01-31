@@ -108,21 +108,23 @@ function submitEvaluation(close) {
 	createEvaluation.submit(evaluation, {
 		validate() {
 			if (!evaluation.course) {
-				return 'Please select a course.'
+				return __('Please select a course.')
 			}
 			if (!evaluation.date) {
-				return 'Please select a date.'
+				return __('Please select a date.')
 			}
 			if (!evaluation.start_time) {
-				return 'Please select a slot.'
+				return __('Please select a slot.')
 			}
 			if (dayjs(evaluation.date).isBefore(dayjs(), 'day')) {
-				return 'Please select a future date.'
+				return __('Please select a future date.')
 			}
 			if (dayjs(evaluation.date).isAfter(dayjs(props.endDate), 'day')) {
-				return `Please select a date before the end date ${dayjs(
-					props.endDate
-				).format('DD MMMM YYYY')}.`
+				return (
+					__('Please select a date before the end date') +
+					dayjs(props.endDate).format('DD MMMM YYYY') +
+					'.'
+				)
 			}
 		},
 		onSuccess() {

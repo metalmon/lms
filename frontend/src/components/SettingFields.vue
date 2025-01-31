@@ -13,14 +13,16 @@
 						v-if="field.type == 'Link'"
 						v-model="data[field.name]"
 						:doctype="field.doctype"
-						:label="__(field.label)"
+						:label="field.label"
 					/>
 
 					<div v-else-if="field.type == 'Code'">
 						<CodeEditor
-							:label="__(field.label)"
+							:label="field.label"
 							type="HTML"
-							description="The HTML you add here will be shown on your sign up page."
+							:description="__(
+								'The HTML you add here will be shown on your sign up page.'
+							)"
 							v-model="data[field.name]"
 							height="250px"
 							class="shrink-0"
@@ -31,7 +33,7 @@
 
 					<div v-else-if="field.type == 'Upload'">
 						<div class="text-sm text-gray-600 mb-1">
-							{{ __(field.label) }}
+							{{ field.label }}
 						</div>
 						<FileUploader
 							v-if="!data[field.name]"
@@ -45,7 +47,9 @@
 								<div class="">
 									<Button @click="openFileSelector" :loading="uploading">
 										{{
-											uploading ? `Uploading ${progress}%` : 'Upload an image'
+											uploading
+												? __(`Uploading ${progress}%`)
+												: __('Upload an image')
 										}}
 									</Button>
 								</div>
@@ -86,7 +90,7 @@
 						v-else
 						:key="field.name"
 						v-model="data[field.name]"
-						:label="__(field.label)"
+						:label="field.label"
 						:type="field.type"
 						:rows="field.rows"
 						:options="field.options"

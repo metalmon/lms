@@ -6,7 +6,7 @@
 			size: 'xl',
 			actions: [
 				{
-					label: 'Submit',
+					label: __('Submit'),
 					variant: 'solid',
 					onClick: (close) => makeAnnouncement(close),
 				},
@@ -87,10 +87,10 @@ const makeAnnouncement = (close) => {
 		{
 			validate() {
 				if (!props.students.length) {
-					return 'No students in this batch'
+					return __('No students in this batch')
 				}
 				if (!announcement.subject) {
-					return 'Subject is required'
+					return __('Subject is required')
 				}
 			},
 			onSuccess() {

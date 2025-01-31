@@ -22,7 +22,7 @@ export const sessionStore = defineStore('lms-session', () => {
 	const login = createResource({
 		url: 'login',
 		onError() {
-			throw new Error('Invalid email or password')
+			throw new Error(__('Invalid email or password'))
 		},
 		onSuccess() {
 			userResource.reload()

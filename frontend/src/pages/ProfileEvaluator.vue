@@ -182,7 +182,7 @@ const createSlot = createResource({
 		}
 	},
 	onSuccess() {
-		showToast('Success', 'Slot added successfully', 'check')
+		showToast(__('Success'), __('Slot added successfully'), 'check')
 		evaluator.reload()
 		showSlotsTemplate.value = 0
 		newSlot.day = ''
@@ -190,7 +190,7 @@ const createSlot = createResource({
 		newSlot.end_time = ''
 	},
 	onError(err) {
-		showToast('Error', err.messages?.[0] || err, 'x')
+		showToast(__('Error'), err.messages?.[0] || err, 'x')
 	},
 })
 
@@ -205,10 +205,10 @@ const updateSlot = createResource({
 		}
 	},
 	onSuccess() {
-		showToast('Success', 'Availability updated successfully', 'check')
+		showToast(__('Success'), __('Availability updated successfully'), 'check')
 	},
 	onError(err) {
-		showToast('Error', err.messages?.[0] || err, 'x')
+		showToast(__('Error'), err.messages?.[0] || err, 'x')
 	},
 })
 
@@ -221,11 +221,11 @@ const deleteSlot = createResource({
 		}
 	},
 	onSuccess() {
-		showToast('Success', 'Slot deleted successfully', 'check')
+		showToast(__('Success'), __('Slot deleted successfully'), 'check')
 		evaluator.reload()
 	},
 	onError(err) {
-		showToast('Error', err.messages?.[0] || err, 'x')
+		showToast(__('Error'), err.messages?.[0] || err, 'x')
 	},
 })
 
@@ -240,10 +240,10 @@ const updateUnavailability = createResource({
 		}
 	},
 	onSuccess() {
-		showToast('Success', 'Unavailability updated successfully', 'check')
+		showToast(__('Success'), __('Unavailability updated successfully'), 'check')
 	},
 	onError(err) {
-		showToast('Error', err.messages?.[0] || err, 'x')
+		showToast(__('Error'), err.messages?.[0] || err, 'x')
 	},
 })
 
@@ -257,7 +257,7 @@ const update = (name, field, value) => {
 		{
 			validate() {
 				if (!value) {
-					return `Please enter a value for ${convertToTitleCase(field)}`
+					return __('Please enter a value for') + ` ${convertToTitleCase(field)}`
 				}
 			},
 		}
@@ -291,31 +291,31 @@ const authorizeCalendar = createResource({
 const days = computed(() => {
 	return [
 		{
-			label: 'Monday',
+			label: __('Monday'),
 			value: 'Monday',
 		},
 		{
-			label: 'Tuesday',
+			label: __('Tuesday'),
 			value: 'Tuesday',
 		},
 		{
-			label: 'Wednesday',
+			label: __('Wednesday'),
 			value: 'Wednesday',
 		},
 		{
-			label: 'Thursday',
+			label: __('Thursday'),
 			value: 'Thursday',
 		},
 		{
-			label: 'Friday',
+			label: __('Friday'),
 			value: 'Friday',
 		},
 		{
-			label: 'Saturday',
+			label: __('Saturday'),
 			value: 'Saturday',
 		},
 		{
-			label: 'Sunday',
+			label: __('Sunday'),
 			value: 'Sunday',
 		},
 	]

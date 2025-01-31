@@ -79,7 +79,7 @@
 				<Tabs :tabs="tabs" v-model="tabIndex" class="border-l w-1/2">
 					<template #default="{ tab }">
 						<div
-							v-if="tab.label == 'Evaluation'"
+							v-if="tab.label == __('Evaluation')"
 							class="flex flex-col space-y-4 p-5"
 						>
 							<div class="flex items-center justify-between">

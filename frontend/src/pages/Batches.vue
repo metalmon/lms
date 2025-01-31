@@ -112,7 +112,7 @@ const categories = ref([])
 const currentCategory = ref(null)
 const title = ref('')
 const filters = ref({})
-const currentTab = ref(user.data?.is_student ? 'All' : 'Upcoming')
+const currentTab = ref(user.data?.is_student ? __('All') : __('Upcoming'))
 const orderBy = ref('start_date')
 
 onMounted(() => {
@@ -289,8 +289,8 @@ const breadcrumbs = computed(() => [
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Batches',
-		description: 'All upcoming batches.',
+		title: __('Batches'),
+		description: __('All upcoming batches.'),
 	}
 })
 

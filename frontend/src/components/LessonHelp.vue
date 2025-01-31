@@ -21,7 +21,7 @@
 				@click="openHelpDialog('quiz')"
 			>
 				<span>
-					{{ __('How to add a Quiz?') }}
+					{{ contentMap['quiz'] }}
 				</span>
 				<Info class="w-3 h-3 text-gray-700" />
 			</div>
@@ -40,7 +40,7 @@
 				@click="openHelpDialog('upload')"
 			>
 				<span class="leading-5">
-					{{ __(contentMap['upload']) }}
+					{{ contentMap['upload'] }}
 				</span>
 				<Info class="w-3 h-3 text-gray-700" />
 			</div>
@@ -59,7 +59,7 @@
 				@click="openHelpDialog('youtube')"
 			>
 				<span>
-					{{ __(contentMap['youtube']) }}
+					{{ contentMap['youtube'] }}
 				</span>
 				<Info class="w-3 h-3 text-gray-700" />
 			</div>
@@ -83,9 +83,9 @@ const showExplanation = ref(false)
 const type = ref(null)
 const title = ref(null)
 const contentMap = {
-	quiz: 'How to add a Quiz?',
-	upload: 'How to upload content from your system?',
-	youtube: 'How to add a YouTube Video?',
+	quiz: __('How to add a Quiz?'),
+	upload: __('How to upload content from your system?'),
+	youtube: __('How to add a YouTube Video?'),
 }
 
 const openHelpDialog = (contentType) => {

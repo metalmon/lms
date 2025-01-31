@@ -11,7 +11,7 @@
 							v-if="!tab.hideLabel"
 							class="mb-2 mt-3 flex cursor-pointer gap-1.5 px-1 text-base font-medium text-gray-600 transition-all duration-300 ease-in-out"
 						>
-							<span>{{ __(tab.label) }}</span>
+							<span>{{ tab.label }}</span>
 						</div>
 						<nav class="space-y-1">
 							<SidebarLink
@@ -35,25 +35,25 @@
 					class="flex flex-1 flex-col px-10 py-8"
 				>
 					<Members
-						v-if="activeTab.label === 'Members'"
+						v-if="activeTab.label === __('Members')"
 						:label="activeTab.label"
 						:description="activeTab.description"
 						v-model:show="show"
 					/>
 					<Categories
-						v-else-if="activeTab.label === 'Categories'"
+						v-else-if="activeTab.label === __('Categories')"
 						:label="activeTab.label"
 						:description="activeTab.description"
 					/>
 					<PaymentSettings
-						v-else-if="activeTab.label === 'Payment Gateway'"
+						v-else-if="activeTab.label === __('Payment Gateway')"
 						:label="activeTab.label"
 						:description="activeTab.description"
 						:data="data"
 						:fields="activeTab.fields"
 					/>
 					<BrandSettings
-						v-else-if="activeTab.label === 'Branding'"
+						v-else-if="activeTab.label === __('Branding')"
 						:label="activeTab.label"
 						:description="activeTab.description"
 						:fields="activeTab.fields"
@@ -104,32 +104,33 @@ const branding = createResource({
 const tabsStructure = computed(() => {
 	return [
 		{
-			label: 'Settings',
+			label: __('Settings'),
 			hideLabel: true,
 			items: [
 				{
-					label: 'General',
+					label: __('General'),
 					icon: 'Wrench',
 					fields: [
 						{
-							label: 'Enable Learning Paths',
+							label: __('Enable Learning Paths'),
 							name: 'enable_learning_paths',
-							description:
-								'This will enforce students to go through programs assigned to them in the correct order.',
+							description: __(
+								'This will enforce students to go through programs assigned to them in the correct order.'
+							),
 							type: 'checkbox',
 						},
 						{
-							label: 'Send calendar invite for evaluations',
+							label: __('Send calendar invite for evaluations'),
 							name: 'send_calendar_invite_for_evaluations',
-							description:
-								'If enabled, it sends google calendar invite to the student for evaluations.',
+							description: __(
+								'If enabled, it sends google calendar invite to the student for evaluations.'
+							),
 							type: 'checkbox',
 						},
 						{
-							label: 'Unsplash Access Key',
+							label: __('Unsplash Access Key'),
 							name: 'unsplash_access_key',
-							description:
-								'Optional. If this is set, students can pick a cover image from the unsplash library for their profile page. https://unsplash.com/documentation#getting-started.',
+							description: __('Optional. If this is set, students can pick a cover image from the unsplash library for their profile page. https://unsplash.com/documentation#getting-started.'),
 							type: 'text',
 						},
 					],
@@ -137,39 +138,40 @@ const tabsStructure = computed(() => {
 			],
 		},
 		{
-			label: 'Settings',
+			label: __('Settings'),
 			hideLabel: true,
 			items: [
 				{
-					label: 'Payment Gateway',
+					label: __('Payment Gateway'),
 					icon: 'DollarSign',
-					description:
-						'Configure the payment gateway and other payment related settings',
+					description: __(
+						'Configure the payment gateway and other payment related settings'
+					),
 					fields: [
 						{
-							label: 'Payment Gateway',
+							label: __('Payment Gateway'),
 							name: 'payment_gateway',
 							type: 'Link',
 							doctype: 'Payment Gateway',
 						},
 						{
-							label: 'Default Currency',
+							label: __('Default Currency'),
 							name: 'default_currency',
 							type: 'Link',
 							doctype: 'Currency',
 						},
 						{
-							label: 'Apply GST for India',
+							label: __('Apply GST for India'),
 							name: 'apply_gst',
 							type: 'checkbox',
 						},
 						{
-							label: 'Show USD equivalent amount',
+							label: __('Show USD equivalent amount'),
 							name: 'show_usd_equivalent',
 							type: 'checkbox',
 						},
 						{
-							label: 'Apply rounding on equivalent',
+							label: __('Apply rounding on equivalent'),
 							name: 'apply_rounding',
 							type: 'checkbox',
 						},
@@ -178,85 +180,85 @@ const tabsStructure = computed(() => {
 			],
 		},
 		{
-			label: 'Lists',
+			label: __('Lists'),
 			hideLabel: false,
 			items: [
 				{
-					label: 'Members',
-					description: 'Manage the members of your learning system',
+					label: __('Members'),
+					description: __('Manage the members of your learning system'),
 					icon: 'UserRoundPlus',
 				},
 				{
-					label: 'Categories',
-					description: 'Manage the members of your learning system',
+					label: __('Categories'),
+					description: __('Manage the members of your learning system'),
 					icon: 'Network',
 				},
 			],
 		},
 		{
-			label: 'Customise',
+			label: __('Customise'),
 			hideLabel: false,
 			items: [
 				{
-					label: 'Branding',
+					label: __('Branding'),
 					icon: 'Blocks',
 					fields: [
 						{
-							label: 'Brand Name',
+							label: __('Brand Name'),
 							name: 'app_name',
 							type: 'text',
 						},
 						{
-							label: 'Logo',
+							label: __('Logo'),
 							name: 'banner_image',
 							type: 'Upload',
 						},
 						{
-							label: 'Favicon',
+							label: __('Favicon'),
 							name: 'favicon',
 							type: 'Upload',
 						},
 						{
-							label: 'Footer Logo',
+							label: __('Footer Logo'),
 							name: 'footer_logo',
 							type: 'Upload',
 						},
 						{
-							label: 'Address',
+							label: __('Address'),
 							name: 'address',
 							type: 'textarea',
 							rows: 2,
 						},
 						{
-							label: 'Footer "Powered By"',
+							label: __('Footer "Powered By"'),
 							name: 'footer_powered',
 							type: 'textarea',
 							rows: 4,
 						},
 						{
-							label: 'Copyright',
+							label: __('Copyright'),
 							name: 'copyright',
 							type: 'text',
 						},
 					],
 				},
 				{
-					label: 'Sidebar',
+					label: __('Sidebar'),
 					icon: 'PanelLeftIcon',
-					description: 'Choose the items you want to show in the sidebar',
+					description: __('Choose the items you want to show in the sidebar'),
 					fields: [
 						{
-							label: 'Courses',
+							label: __('Courses'),
 							name: 'courses',
 							type: 'checkbox',
 						},
 						{
-							label: 'Batches',
+							label: __('Batches'),
 							name: 'batches',
 							type: 'checkbox',
 						},
 						{
-							label: 'Certified Participants',
+							label: __('Certified Participants'),
 							name: 'certified_participants',
 							type: 'checkbox',
 						},
@@ -264,40 +266,40 @@ const tabsStructure = computed(() => {
 							type: 'Column Break',
 						},
 						{
-							label: 'Jobs',
+							label: __('Jobs'),
 							name: 'jobs',
 							type: 'checkbox',
 						},
 						{
-							label: 'Statistics',
+							label: __('Statistics'),
 							name: 'statistics',
 							type: 'checkbox',
 						},
 						{
-							label: 'Notifications',
+							label: __('Notifications'),
 							name: 'notifications',
 							type: 'checkbox',
 						},
 					],
 				},
 				{
-					label: 'Email Templates',
+					label: __('Email Templates'),
 					icon: 'MailPlus',
 					fields: [
 						{
-							label: 'Batch Confirmation Template',
+							label: __('Batch Confirmation Template'),
 							name: 'batch_confirmation_template',
 							doctype: 'Email Template',
 							type: 'Link',
 						},
 						{
-							label: 'Certification Template',
+							label: __('Certification Template'),
 							name: 'certification_template',
 							doctype: 'Email Template',
 							type: 'Link',
 						},
 						{
-							label: 'Assignment Submission Template',
+							label: __('Assignment Submission Template'),
 							name: 'assignment_submission_template',
 							doctype: 'Email Template',
 							type: 'Link',
@@ -305,22 +307,23 @@ const tabsStructure = computed(() => {
 					],
 				},
 				{
-					label: 'Signup',
+					label: __('Signup'),
 					icon: 'LogIn',
 					fields: [
 						{
-							label: 'Custom Content',
+							label: __('Custom Content'),
 							name: 'custom_signup_content',
 							type: 'Code',
 							mode: 'htmlmixed',
 							rows: 10,
 						},
 						{
-							label: 'Ask for Occupation',
+							label: __('Ask for Occupation'),
 							name: 'user_category',
 							type: 'checkbox',
-							description:
-								'Enable this option to ask users to select their occupation during the signup process.',
+							description: __(
+								'Enable this option to ask users to select their occupation during the signup process.'
+							),
 						},
 					],
 				},

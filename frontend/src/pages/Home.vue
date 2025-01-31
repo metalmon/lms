@@ -5,15 +5,15 @@
 			@click="$resources.ping.fetch"
 			:loading="$resources.ping.loading"
 		>
-			Click to send 'ping' request
+			{{ __('Click to send ping request') }}
 		</Button>
 		<div>
 			{{ $resources.ping.data }}
 		</div>
 		<pre>{{ $resources.ping }}</pre>
 
-		<Button @click="showDialog = true">Open Dialog</Button>
-		<Dialog title="Title" v-model="showDialog"> Dialog content </Dialog>
+		<Button @click="showDialog = true">{{ __('Open Dialog') }}</Button>
+		<Dialog title="Title" v-model="showDialog"> {{ __('Dialog content') }} </Dialog>
 	</div>
 </template>
 

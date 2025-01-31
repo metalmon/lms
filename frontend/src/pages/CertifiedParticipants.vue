@@ -121,7 +121,7 @@ const categories = createListResource({
 	cache: ['certification_categories'],
 	auto: true,
 	transform(data) {
-		data.unshift({ label: __(''), value: '' })
+		data.unshift({ label: '', value: '' })
 		return data
 	},
 })
@@ -157,8 +157,8 @@ const breadcrumbs = computed(() => [
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Certified Participants',
-		description: 'All participants that have been certified.',
+		title: __('Certified Participants'),
+		description: __('All participants that have been certified.'),
 	}
 })
 updateDocumentTitle(pageMeta)

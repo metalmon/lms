@@ -20,7 +20,7 @@
 				<div class="w-28 md:w-36">
 					<FormControl
 						type="text"
-						placeholder="Search"
+						:placeholder="__('Search')"
 						v-model="searchQuery"
 						@input="courses.reload()"
 					>
@@ -210,30 +210,30 @@ let tabs
 
 const makeTabs = computed(() => {
 	tabs = []
-	addToTabs('Live')
-	addToTabs('New')
-	addToTabs('Upcoming')
+	addToTabs(__('Live'), 'Live')
+	addToTabs(__('New'), 'New')
+	addToTabs(__('Upcoming'), 'Upcoming')
 
 	if (user.data) {
-		addToTabs('Enrolled')
+		addToTabs(__('Enrolled'), 'Enrolled')
 
 		if (
 			user.data.is_moderator ||
 			user.data.is_instructor ||
 			courses.data?.created?.length
 		) {
-			addToTabs('Created')
+			addToTabs(__('Created'), 'Created')
 		}
 
 		if (user.data.is_moderator) {
-			addToTabs('Under Review')
+			addToTabs(__('Under Review'), 'Under Review')
 		}
 	}
 	return tabs
 })
 
-const addToTabs = (label) => {
-	let courses = getCourses(label.toLowerCase().split(' ').join('_'))
+const addToTabs = (label, value) => {
+	let courses = getCourses(value.toLowerCase().split(' ').join('_'))
 	tabs.push({
 		label,
 		courses: computed(() => courses),
@@ -305,8 +305,8 @@ watch(
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Courses',
-		description: 'All Courses divided by categories',
+		title: __('Courses'),
+		description: __('All Courses divided by categories'),
 	}
 })
 

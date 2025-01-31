@@ -100,7 +100,9 @@
 								<div class="mb-4">
 									<Button @click="openFileSelector" :loading="uploading">
 										{{
-											uploading ? `Uploading ${progress}%` : 'Upload an image'
+											uploading
+												? __('Uploading') + ` ${progress}%`
+												: __('Upload an image')
 										}}
 									</Button>
 								</div>
@@ -250,7 +252,7 @@ const createNewJob = () => {
 				})
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -269,7 +271,7 @@ const editJobDetails = () => {
 				})
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -286,34 +288,34 @@ const removeImage = () => {
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (!['jpg', 'jpeg', 'png'].includes(extension)) {
-		return 'Only image file is allowed.'
+		return __('Only image file is allowed.')
 	}
 }
 
 const jobTypes = computed(() => {
 	return [
-		{ label: 'Full Time', value: 'Full Time' },
-		{ label: 'Part Time', value: 'Part Time' },
-		{ label: 'Contract', value: 'Contract' },
-		{ label: 'Freelance', value: 'Freelance' },
+		{ label: __('Full Time'), value: 'Full Time' },
+		{ label: __('Part Time'), value: 'Part Time' },
+		{ label: __('Contract'), value: 'Contract' },
+		{ label: __('Freelance'), value: 'Freelance' },
 	]
 })
 
 const jobStatuses = computed(() => {
 	return [
-		{ label: 'Open', value: 'Open' },
-		{ label: 'Closed', value: 'Closed' },
+		{ label: __('Open'), value: 'Open' },
+		{ label: __('Closed'), value: 'Closed' },
 	]
 })
 
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Jobs',
+			label: __('Jobs'),
 			route: { name: 'Jobs' },
 		},
 		{
-			label: props.jobName == 'new' ? 'New Job' : 'Edit Job',
+			label: props.jobName == 'new' ? __('New Job') : __('Edit Job'),
 			route: { name: 'JobCreation' },
 		},
 	]

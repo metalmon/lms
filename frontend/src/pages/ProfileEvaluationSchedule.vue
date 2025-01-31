@@ -82,7 +82,7 @@ const evaluations = createListResource({
 		return data.map((d) => {
 			let mappedData = Object.assign({}, d)
 
-			mappedData.title = `${d.member_name}'s Evaluation`
+			mappedData.title = `${d.member_name} ${__("'s Evaluation")}`
 			mappedData.participant = d.member_name
 			mappedData.id = d.name
 			mappedData.venue = d.google_meet_link

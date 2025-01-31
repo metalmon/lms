@@ -7,13 +7,13 @@
 			<Button
 				@click="markAllAsRead.submit"
 				:loading="markAllAsRead.loading"
-				v-if="activeTab === 'Unread' && unReadNotifications.data?.length > 0"
+				v-if="activeTab === __('Unread') && unReadNotifications.data?.length > 0"
 			>
 				{{ __('Mark all as read') }}
 			</Button>
 			<TabButtons
 				class="inline-block"
-				:buttons="[{ label: 'Unread', active: true }, { label: 'Read' }]"
+				:buttons="[{ label: __('Unread'), active: true }, { label: __('Read') }]"
 				v-model="activeTab"
 			/>
 		</div>
@@ -85,7 +85,7 @@ onMounted(() => {
 })
 
 const notifications = computed(() => {
-	return activeTab.value === 'Unread'
+	return activeTab.value === __('Unread')
 		? unReadNotifications.data
 		: readNotifications.data
 })
@@ -136,7 +136,7 @@ const markAllAsRead = createResource({
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Notifications',
+			label: __('Notifications'),
 			route: {
 				name: 'Notifications',
 			},
@@ -147,8 +147,8 @@ const breadcrumbs = computed(() => {
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Notifications',
-		description: 'All your notifications in one place.',
+		title: __('Notifications'),
+		description: __('All your notifications in one place.'),
 	}
 })
 

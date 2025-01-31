@@ -21,7 +21,7 @@ export class Upload {
 		app.mount(div)
 
 		return {
-			title: 'Upload',
+			title: __('Upload'),
 			icon: div.innerHTML,
 		}
 	}

@@ -54,11 +54,11 @@
 						:label="__('Type')"
 						v-model="question.type"
 						type="select"
-						:options="['Choices', 'User Input', 'Open Ended']"
+						:options="[__('Choices'), __('User Input'), __('Open Ended')]"
 						class="pb-2"
 						:required="true"
 					/>
-					<div v-if="question.type == 'Choices'" class="divide-y border-t">
+					<div v-if="question.type == __('Choices')" class="divide-y border-t">
 						<div v-for="n in 4" class="space-y-4 py-2">
 							<FormControl
 								:label="__('Option') + ' ' + n"
@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<div
-						v-else-if="question.type == 'User Input'"
+						v-else-if="question.type == __('User Input')"
 						v-for="n in 4"
 						class="space-y-2"
 					>
@@ -121,7 +121,7 @@ const existingQuestion = reactive({
 })
 const question = reactive({
 	question: '',
-	type: 'Choices',
+	type: __('Choices'),
 	marks: 0,
 })
 
@@ -180,7 +180,7 @@ watch(show, () => {
 		if (props.questionDetail.question) questionData.fetch()
 		else {
 			;(question.question = ''), (question.marks = 0)
-			question.type = 'Choices'
+			question.type = __('Choices')
 			existingQuestion.question = ''
 			existingQuestion.marks = 0
 			questionType.value = null

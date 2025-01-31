@@ -30,12 +30,6 @@
 				type="checkbox"
 				@change.stop="changeRole('lms_student')"
 			/>
-			<FormControl
-				:label="__('Instructor')"
-				v-model="instructor"
-				type="checkbox"
-				@change.stop="changeRole('instructor')"
-			/>
 		</div>
 	</div>
 </template>
@@ -78,8 +72,7 @@ const roles = createResource({
 			'moderator',
 			'course_creator',
 			'batch_evaluator',
-			'lms_student',
-			'instructor'
+			'lms_student'
 		]
 		for (let role of roles) {
 			if (data[role]) roleRefs[role].value = true
@@ -106,7 +99,7 @@ const changeRole = (role) => {
 		},
 		{
 			onSuccess(data) {
-				showToast('Success', 'Role updated successfully', 'check')
+				showToast(__('Success'), __('Role updated successfully'), 'check')
 			},
 		}
 	)

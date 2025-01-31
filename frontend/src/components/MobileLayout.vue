@@ -59,7 +59,6 @@
 	</div>
 </template>
 <script setup>
-import { getSidebarLinks } from '../utils'
 import { useRouter } from 'vue-router'
 import { watch, ref, onMounted } from 'vue'
 import { sessionStore } from '@/stores/session'
@@ -71,10 +70,52 @@ const { logout, user, sidebarSettings } = sessionStore()
 let { isLoggedIn } = sessionStore()
 const router = useRouter()
 let { userResource } = usersStore()
-const sidebarLinks = ref(getSidebarLinks())
+const sidebarLinks = ref([])
 const otherLinks = ref([])
 
+const getBaseSidebarLinks = () => {
+	return [
+		{
+			label: __('Courses'),
+			icon: 'BookOpen',
+			to: 'Courses',
+			activeFor: [
+				'Courses',
+				'CourseDetail',
+				'Lesson',
+				'CourseForm',
+				'LessonForm',
+			],
+		},
+		{
+			label: __('Batches'),
+			icon: 'Users',
+			to: 'Batches',
+			activeFor: ['Batches', 'BatchDetail', 'Batch', 'BatchForm'],
+		},
+		{
+			label: __('Certified Participants'),
+			icon: 'GraduationCap',
+			to: 'CertifiedParticipants',
+			activeFor: ['CertifiedParticipants'],
+		},
+		{
+			label: __('Jobs'),
+			icon: 'Briefcase',
+			to: 'Jobs',
+			activeFor: ['Jobs', 'JobDetail'],
+		},
+		{
+			label: __('Statistics'),
+			icon: 'TrendingUp',
+			to: 'Statistics',
+			activeFor: ['Statistics'],
+		},
+	]
+}
+
 onMounted(() => {
+	sidebarLinks.value = getBaseSidebarLinks()
 	sidebarSettings.reload(
 		{},
 		{
@@ -96,21 +137,21 @@ onMounted(() => {
 const addOtherLinks = () => {
 	if (user) {
 		otherLinks.value.push({
-			label: 'Notifications',
+			label: __('Notifications'),
 			icon: 'Bell',
 			to: 'Notifications',
 		})
 		otherLinks.value.push({
-			label: 'Profile',
+			label: __('Profile'),
 			icon: 'UserRound',
 		})
 		otherLinks.value.push({
-			label: 'Log out',
+			label: __('Log out'),
 			icon: 'LogOut',
 		})
 	} else {
 		otherLinks.value.push({
-			label: 'Log in',
+			label: __('Log in'),
 			icon: 'LogIn',
 		})
 	}
@@ -127,7 +168,7 @@ watch(userResource, () => {
 
 const addQuizzes = () => {
 	otherLinks.value.push({
-		label: 'Quizzes',
+		label: __('Quizzes'),
 		icon: 'CircleHelp',
 		to: 'Quizzes',
 	})
@@ -138,12 +179,12 @@ let isActive = (tab) => {
 }
 
 const handleClick = (tab) => {
-	if (tab.label == 'Log in') window.location.href = '/login'
-	else if (tab.label == 'Log out')
+	if (tab.label == __('Log in')) window.location.href = '/login'
+	else if (tab.label == __('Log out'))
 		logout.submit().then(() => {
 			isLoggedIn = false
 		})
-	else if (tab.label == 'Profile')
+	else if (tab.label == __('Profile'))
 		router.push({
 			name: 'Profile',
 			params: {
@@ -154,8 +195,9 @@ const handleClick = (tab) => {
 }
 
 const isVisible = (tab) => {
-	if (tab.label == 'Log in') return !isLoggedIn
-	else if (tab.label == 'Log out') return isLoggedIn
+	if (tab.label == __('Log in')) return !isLoggedIn
+	else if (tab.label == __('Log out')) return isLoggedIn
 	else return true
 }
 </script>
+

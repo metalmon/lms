@@ -98,7 +98,7 @@ watch(
 const userDropdownOptions = [
 	{
 		icon: User,
-		label: 'My Profile',
+		label: __('Мой профиль'),
 		onClick: () => {
 			router.push(`/user/${userResource.data?.username}`)
 		},
@@ -117,7 +117,7 @@ const userDropdownOptions = [
 	},
 	{
 		icon: Settings,
-		label: 'Settings',
+		label: __('Настройки'),
 		onClick: () => {
 			settingsStore.isSettingsOpen = true
 		},
@@ -127,7 +127,7 @@ const userDropdownOptions = [
 	},
 	{
 		icon: LogOut,
-		label: 'Log out',
+		label: __('Выйти'),
 		onClick: () => {
 			logout.submit().then(() => {
 				isLoggedIn = false
@@ -139,7 +139,7 @@ const userDropdownOptions = [
 	},
 	{
 		icon: LogIn,
-		label: 'Log in',
+		label: __('Войти'),
 		onClick: () => {
 			window.location.href = '/login'
 		},

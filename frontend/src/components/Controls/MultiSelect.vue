@@ -114,7 +114,7 @@ const props = defineProps({
 	},
 	errorMessage: {
 		type: Function,
-		default: (value) => `${value} is an Invalid value`,
+		default: (value) => `${value} ${__('is an Invalid value')}`,
 	},
 	required: {
 		type: Boolean,

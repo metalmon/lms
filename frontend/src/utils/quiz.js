@@ -53,7 +53,7 @@ export class Quiz {
 		}
 		this.wrapper.innerHTML = `<div class='border rounded-md p-10 text-center bg-gray-50 mb-2'>
             <span class="font-medium">
-                Quiz: ${quiz}
+                ${__('Quiz')}: ${quiz}
             </span>
         </div>`
 		return

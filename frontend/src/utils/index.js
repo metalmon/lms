@@ -152,7 +152,7 @@ export function getEditorTools() {
 		header: {
 			class: Header,
 			config: {
-				placeholder: 'Header',
+				placeholder: __('Header'),
 			},
 		},
 		quiz: Quiz,
@@ -438,47 +438,6 @@ export function getTimezones() {
 		'Europe/Kiev',
 		'America/Tegucigalpa',
 		'Pacific/Apia',
-	]
-}
-
-export function getSidebarLinks() {
-	return [
-		{
-			label: 'Courses',
-			icon: 'BookOpen',
-			to: 'Courses',
-			activeFor: [
-				'Courses',
-				'CourseDetail',
-				'Lesson',
-				'CourseForm',
-				'LessonForm',
-			],
-		},
-		{
-			label: 'Batches',
-			icon: 'Users',
-			to: 'Batches',
-			activeFor: ['Batches', 'BatchDetail', 'Batch', 'BatchForm'],
-		},
-		{
-			label: 'Certified Participants',
-			icon: 'GraduationCap',
-			to: 'CertifiedParticipants',
-			activeFor: ['CertifiedParticipants'],
-		},
-		{
-			label: 'Jobs',
-			icon: 'Briefcase',
-			to: 'Jobs',
-			activeFor: ['Jobs', 'JobDetail'],
-		},
-		{
-			label: 'Statistics',
-			icon: 'TrendingUp',
-			to: 'Statistics',
-			activeFor: ['Statistics'],
-		},
 	]
 }
 

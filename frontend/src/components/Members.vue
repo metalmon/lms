@@ -68,14 +68,14 @@
 									</div>
 									<div
 										class="px-1"
-										v-if="member.role && getRole(member.role) !== 'Student'"
+										v-if="member.role && getRole(member.role) !== __('Student')"
 									>
 										<Badge
 											:variant="'subtle'"
 											:ref_for="true"
 											theme="blue"
 											size="sm"
-											label="Badge"
+											:label="__('Badge')"
 										>
 											{{ getRole(member.role) }}
 										</Badge>
@@ -204,10 +204,10 @@ watch(search, () => {
 
 const getRole = (role) => {
 	const map = {
-		'LMS Student': 'Student',
-		'Course Creator': 'Instructor',
-		Moderator: 'Moderator',
-		'Batch Evaluator': 'Evaluator',
+		'LMS Student': __('Student'),
+		'Course Creator': __('Instructor'),
+		Moderator: __('Moderator'),
+		'Batch Evaluator': __('Evaluator'),
 	}
 	return map[role]
 }

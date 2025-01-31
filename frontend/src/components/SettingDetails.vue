@@ -3,7 +3,7 @@
 		<div>
 			<div class="flex itemsc-center justify-between">
 				<div class="text-xl font-semibold leading-none mb-1">
-					{{ __(label) }}
+					{{ label }}
 				</div>
 				<Badge
 					v-if="data.isDirty"
@@ -13,7 +13,7 @@
 				/>
 			</div>
 			<div class="text-xs text-gray-600">
-				{{ __(description) }}
+				{{ description }}
 			</div>
 		</div>
 

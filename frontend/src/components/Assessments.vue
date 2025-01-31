@@ -40,7 +40,11 @@
 						<template #default="{ column, item }">
 							<ListRowItem :item="row[column.key]" :align="column.align">
 								<div v-if="column.key == 'assessment_type'">
-									{{ row[column.key] == 'LMS Quiz' ? 'Quiz' : 'Assignment' }}
+									{{
+										row[column.key] == 'LMS Quiz'
+											? __('Quiz')
+											: __('Assignment')
+									}}
 								</div>
 								<div v-else-if="column.key == 'title'">
 									{{ row[column.key] }}
@@ -188,12 +192,12 @@ const canSeeAddButton = () => {
 const getAssessmentColumns = () => {
 	let columns = [
 		{
-			label: 'Assessment',
+			label: __('Assessment'),
 			key: 'title',
 			width: '25rem',
 		},
 		{
-			label: 'Type',
+			label: __('Type'),
 			key: 'assessment_type',
 			width: '15rem',
 		},
@@ -201,7 +205,7 @@ const getAssessmentColumns = () => {
 
 	if (!user.data?.is_moderator) {
 		columns.push({
-			label: 'Status/Percentage',
+			label: __('Status/Percentage'),
 			key: 'status',
 			align: 'left',
 			width: '10rem',

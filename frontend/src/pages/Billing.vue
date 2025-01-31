@@ -141,14 +141,14 @@
 			<NotPermitted
 				:text="access.data.message"
 				:buttonLabel="
-					type == 'course' ? 'Checkout Courses' : 'Checkout Batches'
+					type == 'course' ? __('Checkout Courses') : __('Checkout Batches')
 				"
 				:buttonLink="type == 'course' ? '/lms/courses' : '/lms/batches'"
 			/>
 		</div>
 		<div v-else-if="!user.data?.name">
 			<NotPermitted
-				text="Please login to access this page."
+				:text="__('Please login to access this page.')"
 				:buttonLink="`/login?redirect-to=/lms/billing/${type}/${name}`"
 			/>
 		</div>
@@ -280,7 +280,7 @@ const validateAddress = () => {
 	for (let field of mandatoryFields) {
 		if (!billingDetails[field])
 			return (
-				'Please enter a valid ' +
+				__('Please enter a valid ') +
 				field
 					.replaceAll('_', ' ')
 					.toLowerCase()
@@ -289,10 +289,10 @@ const validateAddress = () => {
 	}
 
 	if (billingDetails.gstin && !billingDetails.pan)
-		return 'Please enter a valid pan number.'
+		return __('Please enter a valid pan number.')
 
 	if (billingDetails.country == 'India' && !billingDetails.state)
-		return 'Please enter a valid state with correct spelling and the first letter capitalized.'
+		return __('Please enter a valid state with correct spelling and the first letter capitalized.')
 
 	const states = [
 		'Andhra Pradesh',
@@ -329,12 +329,12 @@ const validateAddress = () => {
 		billingDetails.country == 'India' &&
 		!states.includes(billingDetails.state)
 	)
-		return 'Please enter a valid state with correct spelling and the first letter capitalized.'
+		return __('Please enter a valid state with correct spelling and the first letter capitalized.')
 }
 
 const showError = (err) => {
 	createToast({
-		title: 'Error',
+		title: __('Error'),
 		text: err.messages?.[0] || err,
 		icon: 'x',
 		iconClasses: 'bg-red-600 text-white rounded-md p-px',

@@ -55,7 +55,7 @@ export class Assignment {
 		}
 		this.wrapper.innerHTML = `<div class='border rounded-md p-10 text-center bg-gray-50 mb-2'>
             <span class="font-medium">
-                Assignment: ${assignment}
+                ${__('Assignment')}: ${assignment}
             </span>
         </div>`
 		return

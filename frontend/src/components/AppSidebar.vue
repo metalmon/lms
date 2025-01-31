@@ -36,7 +36,7 @@
 							/>
 						</span>
 						<span class="ml-2">
-							{{ __('More') }}
+							{{ __('Useful Links') }}
 						</span>
 					</div>
 					<Button v-if="isModerator" variant="ghost" @click="openPageModal()">
@@ -64,7 +64,7 @@
 		</div>
 		<SidebarLink
 			:link="{
-				label: sidebarStore.isSidebarCollapsed ? 'Expand' : 'Collapse',
+				label: sidebarStore.isSidebarCollapsed ? __('Expand') : __('Collapse'),
 			}"
 			:isCollapsed="sidebarStore.isSidebarCollapsed"
 			@click="toggleSidebar()"
@@ -95,7 +95,6 @@ import CollapseSidebar from '@/components/Icons/CollapseSidebar.vue'
 import SidebarLink from '@/components/SidebarLink.vue'
 import { useStorage } from '@vueuse/core'
 import { ref, onMounted, inject, watch } from 'vue'
-import { getSidebarLinks } from '../utils'
 import { usersStore } from '@/stores/user'
 import { sessionStore } from '@/stores/session'
 import { useSidebar } from '@/stores/sidebar'
@@ -109,13 +108,54 @@ const { userResource } = usersStore()
 let sidebarStore = useSidebar()
 const socket = inject('$socket')
 const unreadCount = ref(0)
-const sidebarLinks = ref(getSidebarLinks())
+const sidebarLinks = ref([])
 const showPageModal = ref(false)
 const isModerator = ref(false)
 const isInstructor = ref(false)
 const pageToEdit = ref(null)
 const showWebPages = ref(false)
 const settingsStore = useSettings()
+
+const getBaseSidebarLinks = () => {
+	return [
+		{
+			label: __('Courses'),
+			icon: 'BookOpen',
+			to: 'Courses',
+			activeFor: [
+				'Courses',
+				'CourseDetail',
+				'Lesson',
+				'CourseForm',
+				'LessonForm',
+			],
+		},
+		{
+			label: __('Batches'),
+			icon: 'Users',
+			to: 'Batches',
+			activeFor: ['Batches', 'BatchDetail', 'Batch', 'BatchForm'],
+		},
+		{
+			label: __('Certified Participants'),
+			icon: 'GraduationCap',
+			to: 'CertifiedParticipants',
+			activeFor: ['CertifiedParticipants'],
+		},
+		{
+			label: __('Jobs'),
+			icon: 'Briefcase',
+			to: 'Jobs',
+			activeFor: ['Jobs', 'JobDetail'],
+		},
+		{
+			label: __('Statistics'),
+			icon: 'TrendingUp',
+			to: 'Statistics',
+			activeFor: ['Statistics'],
+		},
+	]
+}
 
 onMounted(() => {
 	socket.on('publish_lms_notifications', (data) => {
@@ -136,6 +176,7 @@ onMounted(() => {
 			},
 		}
 	)
+	sidebarLinks.value = getBaseSidebarLinks()
 })
 
 const unreadNotifications = createResource({
@@ -153,7 +194,7 @@ const unreadNotifications = createResource({
 	onSuccess(data) {
 		unreadCount.value = data
 		sidebarLinks.value = sidebarLinks.value.map((link) => {
-			if (link.label === 'Notifications') {
+			if (link.label === __('Notifications')) {
 				link.count = data
 			}
 			return link
@@ -165,7 +206,7 @@ const unreadNotifications = createResource({
 const addNotifications = () => {
 	if (user) {
 		sidebarLinks.value.push({
-			label: 'Notifications',
+			label: __('Notifications'),
 			icon: 'Bell',
 			to: 'Notifications',
 			activeFor: ['Notifications'],
@@ -177,7 +218,7 @@ const addNotifications = () => {
 const addQuizzes = () => {
 	if (isInstructor.value || isModerator.value) {
 		sidebarLinks.value.push({
-			label: 'Quizzes',
+			label: __('Quizzes'),
 			icon: 'CircleHelp',
 			to: 'Quizzes',
 			activeFor: ['Quizzes', 'QuizForm'],
@@ -188,7 +229,7 @@ const addQuizzes = () => {
 const addAssignments = () => {
 	if (isInstructor.value || isModerator.value) {
 		sidebarLinks.value.push({
-			label: 'Assignments',
+			label: __('Assignments'),
 			icon: 'Pencil',
 			to: 'Assignments',
 			activeFor: ['Assignments', 'AssignmentForm'],
@@ -207,7 +248,7 @@ const addPrograms = () => {
 		settingsStore.learningPaths.data
 	) {
 		sidebarLinks.value = sidebarLinks.value.filter(
-			(link) => link.label !== 'Courses'
+			(link) => link.label !== __('Courses')
 		)
 		activeFor.push('CourseDetail')
 		activeFor.push('Lesson')
@@ -219,7 +260,7 @@ const addPrograms = () => {
 
 	if (canAddProgram) {
 		sidebarLinks.value.splice(index, 0, {
-			label: 'Programs',
+			label: __('Programs'),
 			icon: 'Route',
 			to: 'Programs',
 			activeFor: activeFor,

@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Edit your profile',
+			title: __('Edit your profile'),
 			size: 'xl',
 			actions: [
 				{
-					label: 'Save',
+					label: __('Save'),
 					variant: 'solid',
 					onClick: (close) => saveProfile(close),
 				},
@@ -25,8 +25,8 @@
 							<Button @click="openFileSelector" :loading="uploading">
 								{{
 									uploading
-										? `Uploading ${progress}%`
-										: 'Upload a profile image'
+										? __(`Uploading ${progress}%`)
+										: __('Upload a profile image')
 								}}
 							</Button>
 						</div>
@@ -155,7 +155,7 @@ const saveProfile = (close) => {
 				reloadProfile.value.reload()
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		}
 	)
@@ -164,7 +164,7 @@ const saveProfile = (close) => {
 const validateFile = (file) => {
 	let extension = file.name.split('.').pop().toLowerCase()
 	if (!['jpg', 'jpeg', 'png'].includes(extension)) {
-		return 'Only image file is allowed.'
+		return __('Only image file is allowed.')
 	}
 }
 

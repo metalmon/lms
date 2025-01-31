@@ -423,10 +423,10 @@ const submitCourse = () => {
 			},
 			{
 				onSuccess() {
-					showToast('Success', 'Course updated successfully', 'check')
+					showToast(__('Success'), __('Course updated successfully'), 'check')
 				},
 				onError(err) {
-					showToast('Error', err.messages?.[0] || err, 'x')
+					showToast(__('Error'), err.messages?.[0] || err, 'x')
 				},
 			}
 		)
@@ -434,7 +434,7 @@ const submitCourse = () => {
 		courseCreationResource.submit(course, {
 			onSuccess(data) {
 				capture('course_created')
-				showToast('Success', 'Course created successfully', 'check')
+				showToast(__('Success'), __('Course created successfully'), 'check')
 				if (!settingsStore.onboardingDetails.data?.is_onboarded) {
 					settingsStore.onboardingDetails.reload()
 				}
@@ -444,7 +444,7 @@ const submitCourse = () => {
 				})
 			},
 			onError(err) {
-				showToast('Error', err.messages?.[0] || err, 'x')
+				showToast(__('Error'), err.messages?.[0] || err, 'x')
 			},
 		})
 	}
@@ -546,7 +546,7 @@ const check_permission = () => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Courses',
+			label: __('Courses'),
 			route: { name: 'Courses' },
 		},
 	]
@@ -557,7 +557,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: props.courseName == 'new' ? 'New Course' : 'Edit Course',
+		label: props.courseName == 'new' ? __('New Course') : __('Edit Course'),
 		route: { name: 'CourseForm', params: { courseName: props.courseName } },
 	})
 	return crumbs
@@ -565,8 +565,8 @@ const breadcrumbs = computed(() => {
 
 const pageMeta = computed(() => {
 	return {
-		title: 'Create a Course',
-		description: 'Create or edit a course for your learning system.',
+		title: __('Create a Course'),
+		description: __('Create or edit a course for your learning system.'),
 	}
 })
 

@@ -38,7 +38,7 @@
 							<div class="mb-4">
 								<Button @click="openFileSelector" :loading="uploading">
 									{{
-										uploading ? `Uploading ${progress}%` : 'Upload an zip file'
+										uploading ? __(`Uploading ${progress}%`) : __('Upload an zip file')
 									}}
 								</Button>
 							</div>
@@ -190,7 +190,7 @@ const editChapter = (close) => {
 		{
 			validate() {
 				if (!chapter.title) {
-					return 'Title is required'
+					return __('Title is required')
 				}
 			},
 			onSuccess() {
