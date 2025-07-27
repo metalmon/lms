@@ -150,7 +150,7 @@ const { brand } = sessionStore()
 const breadcrumbs = computed(() => {
 	return [
 		{
-			label: 'Statistics',
+			label: __('Statistics'),
 			route: {
 				name: 'Statistics',
 			},
@@ -167,7 +167,7 @@ const chartDetails = createResource({
 const signupsChart = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	params: {
-		chart_name: 'New Signups',
+		chart_name: __('New Signups'),
 	},
 	auto: true,
 	transform(data) {
@@ -184,7 +184,7 @@ const enrollmentChart = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['enrollments'],
 	params: {
-		chart_name: 'Course Enrollments',
+		chart_name: __('Course Enrollments'),
 	},
 	auto: true,
 	transform(data) {
@@ -201,7 +201,7 @@ const certification = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['certifications'],
 	params: {
-		chart_name: 'Certification',
+		chart_name: __('Certification'),
 	},
 	auto: true,
 	transform(data) {

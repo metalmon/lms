@@ -469,7 +469,7 @@ const validateLesson = () => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: 'Courses',
+			label: __('Courses'),
 			route: { name: 'Courses' },
 		},
 		{
@@ -492,7 +492,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: lessonDetails?.data?.lesson ? 'Edit Lesson' : 'Create Lesson',
+		label: lessonDetails?.data?.lesson ? __('Edit Lesson') : __('Create Lesson'),
 		route: {
 			name: 'LessonForm',
 			params: {
@@ -509,7 +509,7 @@ usePageMeta(() => {
 	return {
 		title: lessonDetails?.data?.lesson
 			? lessonDetails.data.lesson.title
-			: 'New Lesson',
+			: __('New Lesson'),
 		icon: brand.favicon,
 	}
 })

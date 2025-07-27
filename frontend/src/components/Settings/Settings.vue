@@ -11,7 +11,7 @@
 							v-if="!tab.hideLabel"
 							class="mb-2 mt-3 flex cursor-pointer gap-1.5 px-1 text-base font-medium text-ink-gray-5 transition-all duration-300 ease-in-out"
 						>
-							<span>{{ __(tab.label) }}</span>
+							<span>{{ tab.label }}</span>
 						</div>
 						<nav class="space-y-1">
 							<SidebarLink
@@ -40,13 +40,13 @@
 						v-bind="{
 							label: activeTab.label,
 							description: activeTab.description,
-							...(activeTab.label === 'Branding'
+							...(activeTab.label === __('Branding')
 								? { fields: activeTab.fields }
 								: {}),
 						}"
 					/>
 					<PaymentSettings
-						v-else-if="activeTab.label === 'Payment Gateway'"
+						v-else-if="activeTab.label === __('Payment Gateway')"
 						:label="activeTab.label"
 						:description="activeTab.description"
 						:data="data"
@@ -95,69 +95,69 @@ const data = createDocumentResource({
 const tabsStructure = computed(() => {
 	return [
 		{
-			label: 'Settings',
+			label: __('Settings'),
 			hideLabel: true,
 			items: [
 				{
-					label: 'General',
+					label: __('General'),
 					icon: 'Wrench',
 					fields: [
 						{
-							label: 'Allow Guest Access',
+							label: __('Allow Guest Access'),
 							name: 'allow_guest_access',
 							description:
-								'If enabled, users can access the course and batch lists without logging in.',
+								__('If enabled, users can access the course and batch lists without logging in.'),
 							type: 'checkbox',
 						},
 						{
-							label: 'Enable Learning Paths',
+							label: __('Enable Learning Paths'),
 							name: 'enable_learning_paths',
 							description:
-								'This will ensure students follow the assigned programs in order.',
+								__('This will ensure students follow the assigned programs in order.'),
 							type: 'checkbox',
 						},
 						{
-							label: 'Prevent Skipping Videos',
+							label: __('Prevent Skipping Videos'),
 							name: 'prevent_skipping_videos',
 							type: 'checkbox',
 							description:
-								'If enabled, users will no able to move forward in a video',
+								__('If enabled, users will no able to move forward in a video'),
 						},
 						{
-							label: 'Send calendar invite for evaluations',
+							label: __('Send calendar invite for evaluations'),
 							name: 'send_calendar_invite_for_evaluations',
 							description:
-								'If enabled, it sends google calendar invite to the student for evaluations.',
+								__('If enabled, it sends google calendar invite to the student for evaluations.'),
 							type: 'checkbox',
 						},
 						{
 							type: 'Column Break',
 						},
 						{
-							label: 'Livecode URL',
+							label: __('Livecode URL'),
 							name: 'livecode_url',
 							doctype: 'Livecode URL',
 							type: 'text',
 							description:
-								'https://docs.frappe.io/learning/falcon-self-hosting-guide',
+								__('https://docs.frappe.io/learning/falcon-self-hosting-guide'),
 						},
 						{
-							label: 'Batch Confirmation Email Template',
+							label: __('Batch Confirmation Email Template'),
 							name: 'batch_confirmation_template',
 							doctype: 'Email Template',
 							type: 'Link',
 						},
 						{
-							label: 'Certification Email Template',
+							label: __('Certification Email Template'),
 							name: 'certification_template',
 							doctype: 'Email Template',
 							type: 'Link',
 						},
 						{
-							label: 'Unsplash Access Key',
+							label: __('Unsplash Access Key'),
 							name: 'unsplash_access_key',
 							description:
-								'Allows users to pick a profile cover image from Unsplash. https://unsplash.com/documentation#getting-started.',
+								__('Allows users to pick a profile cover image from Unsplash. https://unsplash.com/documentation#getting-started.'),
 							type: 'password',
 						},
 					],
@@ -165,23 +165,23 @@ const tabsStructure = computed(() => {
 			],
 		},
 		{
-			label: 'Settings',
+			label: __('Settings'),
 			hideLabel: true,
 			items: [
 				{
-					label: 'Payment Gateway',
+					label: __('Payment Gateway'),
 					icon: 'DollarSign',
 					description:
-						'Configure the payment gateway and other payment related settings',
+						__('Configure the payment gateway and other payment related settings'),
 					fields: [
 						{
-							label: 'Default Currency',
+							label: __('Default Currency'),
 							name: 'default_currency',
 							type: 'Link',
 							doctype: 'Currency',
 						},
 						{
-							label: 'Payment Gateway',
+							label: __('Payment Gateway'),
 							name: 'payment_gateway',
 							type: 'Link',
 							doctype: 'Payment Gateway',
@@ -190,17 +190,17 @@ const tabsStructure = computed(() => {
 							type: 'Column Break',
 						},
 						{
-							label: 'Apply GST for India',
+							label: __('Apply GST for India'),
 							name: 'apply_gst',
 							type: 'checkbox',
 						},
 						{
-							label: 'Show USD equivalent amount',
+							label: __('Show USD equivalent amount'),
 							name: 'show_usd_equivalent',
 							type: 'checkbox',
 						},
 						{
-							label: 'Apply rounding on equivalent',
+							label: __('Apply rounding on equivalent'),
 							name: 'apply_rounding',
 							type: 'checkbox',
 						},
@@ -209,100 +209,100 @@ const tabsStructure = computed(() => {
 			],
 		},
 		{
-			label: 'Lists',
+			label: __('Lists'),
 			hideLabel: false,
 			items: [
 				{
-					label: 'Members',
+					label: __('Members'),
 					description:
-						'Add new members or manage roles and permissions of existing members',
+						__('Add new members or manage roles and permissions of existing members'),
 					icon: 'UserRoundPlus',
 					template: markRaw(Members),
 				},
 				{
-					label: 'Evaluators',
+					label: __('Evaluators'),
 					description: '',
 					icon: 'UserCheck',
 					description:
-						'Add new evaluators or check the slots existing evaluators',
+						__('Add new evaluators or check the slots existing evaluators'),
 					template: markRaw(Evaluators),
 				},
 				{
-					label: 'Zoom Accounts',
+					label: __('Zoom Accounts'),
 					description:
-						'Manage zoom accounts to conduct live classes from batches',
+						__('Manage zoom accounts to conduct live classes from batches'),
 					icon: 'Video',
 					template: markRaw(ZoomSettings),
 				},
 				{
-					label: 'Badges',
+					label: __('Badges'),
 					description:
-						'Create badges and assign them to students to acknowledge their achievements',
+						__('Create badges and assign them to students to acknowledge their achievements'),
 					icon: 'Award',
 					template: markRaw(Badges),
 				},
 				{
-					label: 'Categories',
-					description: 'Double click to edit the category',
+					label: __('Categories'),
+					description: __('Double click to edit the category'),
 					icon: 'Network',
 					template: markRaw(Categories),
 				},
 				{
-					label: 'Email Templates',
-					description: 'Manage the email templates for your learning system',
+					label: __('Email Templates'),
+					description: __('Manage the email templates for your learning system'),
 					icon: 'MailPlus',
 					template: markRaw(EmailTemplates),
 				},
 			],
 		},
 		{
-			label: 'Customize',
+			label: __('Customize'),
 			hideLabel: false,
 			items: [
 				{
-					label: 'Branding',
+					label: __('Branding'),
 					icon: 'Blocks',
 					template: markRaw(BrandSettings),
 					fields: [
 						{
-							label: 'Brand Name',
+							label: __('Brand Name'),
 							name: 'app_name',
 							type: 'text',
 						},
 						{
-							label: 'Logo',
+							label: __('Logo'),
 							name: 'banner_image',
 							type: 'Upload',
 						},
 						{
-							label: 'Favicon',
+							label: __('Favicon'),
 							name: 'favicon',
 							type: 'Upload',
 						},
 					],
 				},
 				{
-					label: 'Sidebar',
+					label: __('Sidebar'),
 					icon: 'PanelLeftIcon',
-					description: 'Choose the items you want to show in the sidebar',
+					description: __('Choose the items you want to show in the sidebar'),
 					fields: [
 						{
-							label: 'Courses',
+							label: __('Courses'),
 							name: 'courses',
 							type: 'checkbox',
 						},
 						{
-							label: 'Batches',
+							label: __('Batches'),
 							name: 'batches',
 							type: 'checkbox',
 						},
 						{
-							label: 'Programming Exercises',
+							label: __('Programming Exercises'),
 							name: 'programming_exercises',
 							type: 'checkbox',
 						},
 						{
-							label: 'Certified Members',
+							label: __('Certified Members'),
 							name: 'certified_members',
 							type: 'checkbox',
 						},
@@ -310,45 +310,45 @@ const tabsStructure = computed(() => {
 							type: 'Column Break',
 						},
 						{
-							label: 'Jobs',
+							label: __('Jobs'),
 							name: 'jobs',
 							type: 'checkbox',
 						},
 						{
-							label: 'Statistics',
+							label: __('Statistics'),
 							name: 'statistics',
 							type: 'checkbox',
 						},
 						{
-							label: 'Notifications',
+							label: __('Notifications'),
 							name: 'notifications',
 							type: 'checkbox',
 						},
 					],
 				},
 				{
-					label: 'Signup',
+					label: __('Signup'),
 					icon: 'LogIn',
 					fields: [
 						{
-							label: 'Identify User Category',
+							label: __('Identify User Category'),
 							name: 'user_category',
 							type: 'checkbox',
 							description:
-								'Enable this option to identify the user category during signup.',
+								__('Enable this option to identify the user category during signup.'),
 						},
 						{
-							label: 'Disable signup',
+							label: __('Disable signup'),
 							name: 'disable_signup',
 							type: 'checkbox',
 							description:
-								'New users will have to be manually registered by Admins.',
+								__('New users will have to be manually registered by Admins.'),
 						},
 						{
 							type: 'Column Break',
 						},
 						{
-							label: 'Signup Consent HTML',
+							label: __('Signup Consent HTML'),
 							name: 'custom_signup_content',
 							type: 'Code',
 							mode: 'htmlmixed',
@@ -357,30 +357,30 @@ const tabsStructure = computed(() => {
 					],
 				},
 				{
-					label: 'SEO',
+					label: __('SEO'),
 					icon: 'Search',
 					fields: [
 						{
-							label: 'Meta Description',
+							label: __('Meta Description'),
 							name: 'meta_description',
 							type: 'textarea',
 							rows: 4,
 							description:
-								"This description will be shown on lists and pages that don't have meta description",
+								__("This description will be shown on lists and pages that don't have meta description"),
 						},
 						{
-							label: 'Meta Keywords',
+							label: __('Meta Keywords'),
 							name: 'meta_keywords',
 							type: 'textarea',
 							rows: 4,
 							description:
-								'Comma separated keywords for search engines to find your website.',
+								__('Comma separated keywords for search engines to find your website.'),
 						},
 						{
 							type: 'Column Break',
 						},
 						{
-							label: 'Meta Image',
+							label: __('Meta Image'),
 							name: 'meta_image',
 							type: 'Upload',
 							size: 'lg',
