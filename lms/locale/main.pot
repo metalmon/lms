@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Frappe LMS VERSION\n"
 "Report-Msgid-Bugs-To: jannat@frappe.io\n"
-"POT-Creation-Date: 2025-07-27 07:22+0000\n"
-"PO-Revision-Date: 2025-07-27 07:22+0000\n"
+"POT-Creation-Date: 2025-08-02 09:57+0000\n"
+"PO-Revision-Date: 2025-08-02 09:57+0000\n"
 "Last-Translator: jannat@frappe.io\n"
 "Language-Team: jannat@frappe.io\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.13.1\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: lms/templates/emails/assignment_submission.html:5
 msgid " Please evaluate and grade it."
@@ -2698,6 +2698,10 @@ msgstr ""
 msgid "Frappe LMS App"
 msgstr ""
 
+#: lms/www/lms.py:20
+msgid "Frappe Learning"
+msgstr ""
+
 #: lms/lms/widgets/CourseCard.html:114
 msgid "Free"
 msgstr ""
@@ -3624,7 +3628,8 @@ msgstr ""
 msgid "Launch File"
 msgstr ""
 
-#: lms/hooks.py:9 lms/hooks.py:252
+#: frontend/src/components/UserDropdown.vue:36
+#: frontend/src/pages/PersonaForm.vue:9 lms/hooks.py:9 lms/hooks.py:252
 msgid "Learning"
 msgstr ""
 

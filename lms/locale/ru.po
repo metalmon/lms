@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: jannat@frappe.io\n"
-"POT-Creation-Date: 2025-07-27 07:22+0000\n"
-"PO-Revision-Date: 2025-07-27 11:22+0400\n"
+"POT-Creation-Date: 2025-08-02 09:57+0000\n"
+"PO-Revision-Date: 2025-08-02 13:58+0400\n"
 "Last-Translator: AlexKuzin <dev@olimpicfresh.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"Generated-By: Babel 2.13.1\n"
+"Generated-By: Babel 2.16.0\n"
 "X-Generator: Poedit 3.5\n"
 
 #: lms/templates/emails/assignment_submission.html:5
@@ -2694,6 +2694,10 @@ msgstr "Frappe LMS"
 msgid "Frappe LMS App"
 msgstr "Приложение Frappe LMS"
 
+#: lms/www/lms.py:20
+msgid "Frappe Learning"
+msgstr ""
+
 #: lms/lms/widgets/CourseCard.html:114
 msgid "Free"
 msgstr "Бесплатно"
@@ -3620,7 +3624,8 @@ msgstr "Последняя подача"
 msgid "Launch File"
 msgstr "Запуск файла"
 
-#: lms/hooks.py:9 lms/hooks.py:252
+#: frontend/src/components/UserDropdown.vue:36
+#: frontend/src/pages/PersonaForm.vue:9 lms/hooks.py:9 lms/hooks.py:252
 msgid "Learning"
 msgstr "Обучение"
 
