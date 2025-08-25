@@ -37,6 +37,7 @@
 					<component
 						v-if="activeTab.template"
 						:is="activeTab.template"
+						v-model:show="show"
 						v-bind="{
 							label: activeTab.label,
 							description: activeTab.description,
@@ -110,14 +111,7 @@ const tabsStructure = computed(() => {
 							type: 'checkbox',
 						},
 						{
-							label: __('Enable Learning Paths'),
-							name: 'enable_learning_paths',
-							description:
-								__('This will ensure students follow the assigned programs in order.'),
-							type: 'checkbox',
-						},
-						{
-							label: __('Prevent Skipping Videos'),
+							label: 'Prevent Skipping Videos',
 							name: 'prevent_skipping_videos',
 							type: 'checkbox',
 							description:
