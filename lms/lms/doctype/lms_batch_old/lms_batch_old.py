@@ -6,7 +6,16 @@ from frappe import _
 from frappe.model.document import Document
 
 from lms.lms.doctype.lms_enrollment.lms_enrollment import create_membership
-from lms.lms.utils import is_mentor
+
+
+def is_mentor(course, member=None):
+	if not member:
+		member = frappe.session.user
+	
+	return frappe.db.exists(
+		"LMS Course Mentor Mapping",
+		{"course": course, "mentor": member}
+	)
 
 
 class LMSBatchOld(Document):
