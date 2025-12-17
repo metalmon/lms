@@ -54,7 +54,7 @@
 						:config="{
 							data: signupsChart.data,
 							title: 'Signups',
-							subtitle: 'Signups per month',
+							subtitle: 'Signups per day',
 							xAxis: {
 								key: 'date',
 								type: 'time',
@@ -74,7 +74,7 @@
 						:config="{
 							data: enrollmentChart.data,
 							title: 'Enrollments',
-							subtitle: 'Enrollments per month',
+							subtitle: 'Enrollments per day',
 							xAxis: {
 								key: 'date',
 								type: 'time',
@@ -96,7 +96,7 @@
 						:config="{
 							data: certification.data,
 							title: 'Certifications',
-							subtitle: 'Certifications per month',
+							subtitle: 'Certifications per day',
 							xAxis: {
 								key: 'date',
 								type: 'time',
@@ -150,7 +150,7 @@ const { brand } = sessionStore()
 const breadcrumbs = computed(() => {
 	return [
 		{
-			label: __('Statistics'),
+			label: 'Statistics',
 			route: {
 				name: 'Statistics',
 			},
@@ -167,7 +167,7 @@ const chartDetails = createResource({
 const signupsChart = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	params: {
-		chart_name: __('New Signups'),
+		chart_name: 'New Signups',
 	},
 	auto: true,
 	transform(data) {
@@ -184,7 +184,7 @@ const enrollmentChart = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['enrollments'],
 	params: {
-		chart_name: __('Course Enrollments'),
+		chart_name: 'Course Enrollments',
 	},
 	auto: true,
 	transform(data) {
@@ -201,7 +201,7 @@ const certification = createResource({
 	url: 'lms.lms.utils.get_chart_data',
 	cache: ['certifications'],
 	params: {
-		chart_name: __('Certification'),
+		chart_name: 'Certification',
 	},
 	auto: true,
 	transform(data) {

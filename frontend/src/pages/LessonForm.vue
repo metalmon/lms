@@ -142,7 +142,6 @@ const renderEditor = (holder) => {
 	return new EditorJS({
 		holder: holder,
 		tools: getEditorTools(true),
-		autofocus: true,
 		defaultBlock: 'markdown',
 		onChange: async (api, event) => {
 			enablePlyr()
@@ -469,7 +468,7 @@ const validateLesson = () => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: __('Courses'),
+			label: 'Courses',
 			route: { name: 'Courses' },
 		},
 		{
@@ -492,7 +491,7 @@ const breadcrumbs = computed(() => {
 		})
 	}
 	crumbs.push({
-		label: lessonDetails?.data?.lesson ? __('Edit Lesson') : __('Create Lesson'),
+		label: lessonDetails?.data?.lesson ? 'Edit Lesson' : 'Create Lesson',
 		route: {
 			name: 'LessonForm',
 			params: {
@@ -509,7 +508,7 @@ usePageMeta(() => {
 	return {
 		title: lessonDetails?.data?.lesson
 			? lessonDetails.data.lesson.title
-			: __('New Lesson'),
+			: 'New Lesson',
 		icon: brand.favicon,
 	}
 })

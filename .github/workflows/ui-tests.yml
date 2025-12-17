@@ -1,10 +1,7 @@
 name: UI
 
 on:
-  pull_request:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
+  workflow_dispatch: {}
 
 permissions:
   # Do not change this as GITHUB_TOKEN is being used by roulette
@@ -48,9 +45,9 @@ jobs:
               exit 1
           fi
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           check-latest: true
 
       - name: Add to Hosts

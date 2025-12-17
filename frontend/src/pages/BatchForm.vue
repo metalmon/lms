@@ -79,14 +79,14 @@
 					<div class="space-y-5">
 						<FormControl
 							v-model="batch.start_date"
-							:label="__('Start Date')"
+							:label="__('Batch Start Date')"
 							type="date"
 							class="mb-4"
 							:required="true"
 						/>
 						<FormControl
 							v-model="batch.end_date"
-							:label="__('End Date')"
+							:label="__('Batch End Date')"
 							type="date"
 							class="mb-4"
 							:required="true"
@@ -95,14 +95,14 @@
 					<div class="space-y-5">
 						<FormControl
 							v-model="batch.start_time"
-							:label="__('Start Time')"
+							:label="__('Session Start Time')"
 							type="time"
 							class="mb-4"
 							:required="true"
 						/>
 						<FormControl
 							v-model="batch.end_time"
-							:label="__('End Time')"
+							:label="__('Session End Time')"
 							type="time"
 							class="mb-4"
 							:required="true"
@@ -340,8 +340,10 @@ import { sessionStore } from '../stores/session'
 import MultiSelect from '@/components/Controls/MultiSelect.vue'
 import Link from '@/components/Controls/Link.vue'
 import {
-	openSettings,
+	escapeHTML,
 	getMetaInfo,
+	openSettings,
+	sanitizeHTML,
 	updateMetaInfo,
 	validateFile,
 } from '@/utils'
@@ -500,7 +502,22 @@ const imageResource = createResource({
 	},
 })
 
+const validateFields = () => {
+	batch.description = sanitizeHTML(batch.description)
+	batch.batch_details = sanitizeHTML(batch.batch_details)
+
+	Object.keys(batch).forEach((key) => {
+		if (
+			!['description', 'batch_details'].includes(key) &&
+			typeof batch[key] === 'string'
+		) {
+			batch[key] = escapeHTML(batch[key])
+		}
+	})
+}
+
 const saveBatch = () => {
+	validateFields()
 	if (batchDetail.data) {
 		editBatchDetails()
 	} else {
@@ -597,7 +614,7 @@ const removeImage = () => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: __('Batches'),
+			label: 'Batches',
 			route: {
 				name: 'Batches',
 			},

@@ -103,9 +103,10 @@ import {
 	Tooltip,
 	usePageMeta,
 } from 'frappe-ui'
-import { computed, watch } from 'vue'
+import { computed, inject, watch } from 'vue'
 import { Users, Star } from 'lucide-vue-next'
 import { sessionStore } from '@/stores/session'
+import { useRouter } from 'vue-router'
 import CourseCardOverlay from '@/components/CourseCardOverlay.vue'
 import CourseOutline from '@/components/CourseOutline.vue'
 import CourseReviews from '@/components/CourseReviews.vue'
@@ -114,6 +115,8 @@ import CourseInstructors from '@/components/CourseInstructors.vue'
 import RelatedCourses from '@/components/RelatedCourses.vue'
 
 const { brand } = sessionStore()
+const router = useRouter()
+const user = inject('$user')
 
 const props = defineProps({
 	courseName: {
@@ -140,8 +143,31 @@ watch(
 	}
 )
 
+watch(course, () => {
+	if (
+		!isInstructor() &&
+		!user.data?.is_moderator &&
+		!course.data?.published &&
+		!course.data?.upcoming
+	) {
+		router.push({
+			name: 'Courses',
+		})
+	}
+})
+
+const isInstructor = () => {
+	let user_is_instructor = false
+	course.data?.instructors.forEach((instructor) => {
+		if (!user_is_instructor && instructor.name == user.data?.name) {
+			user_is_instructor = true
+		}
+	})
+	return user_is_instructor
+}
+
 const breadcrumbs = computed(() => {
-	let items = [{ label: __('Courses'), route: { name: 'Courses' } }]
+	let items = [{ label: 'Courses', route: { name: 'Courses' } }]
 	items.push({
 		label: course?.data?.title,
 		route: { name: 'CourseDetail', params: { courseName: course?.data?.name } },

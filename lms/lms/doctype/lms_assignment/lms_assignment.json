@@ -70,10 +70,11 @@
    "fieldtype": "Section Break"
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-24 09:36:31.464508",
- "modified_by": "Administrator",
+ "modified": "2025-12-17 14:47:05.489937",
+ "modified_by": "sayali@frappe.io",
  "module": "LMS",
  "name": "LMS Assignment",
  "naming_rule": "Expression (old style)",
@@ -111,11 +112,35 @@
    "report": 1,
    "role": "LMS Student",
    "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Course Creator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Batch Evaluator",
+   "share": 1,
+   "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "title"
+ "title_field": "title",
+ "track_changes": 1
 }

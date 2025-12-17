@@ -1,5 +1,5 @@
 <template>
-	<div class="text-lg font-semibold mb-4">
+	<div class="text-lg font-semibold mb-4 text-ink-gray-9">
 		{{ __('My Notes') }}
 	</div>
 	<TextEditor
@@ -7,6 +7,9 @@
 		:placeholder="__('Make notes for quick revision. Press / for menu.')"
 		@change="(val: string) => updateNoteText(val)"
 		:editable="true"
+		:uploadArgs="{
+			private: true,
+		}"
 		editorClass="prose prose-sm min-h-[200px] max-w-none"
 	/>
 </template>

@@ -2,9 +2,17 @@
 	<NoPermission v-if="!$user.data" />
 	<div v-else-if="profile.data">
 		<header
-			class="sticky top-0 z-10 flex flex-col md:flex-row md:items-center justify-between border-b bg-surface-white px-3 py-2.5 sm:px-5"
+			class="sticky group top-0 z-10 flex flex-col md:flex-row md:items-center justify-between border-b bg-surface-white px-3 py-2.5 sm:px-5"
 		>
 			<Breadcrumbs class="h-7" :items="breadcrumbs" />
+			<Button v-if="isSessionUser()" class="invisible group-hover:visible">
+				<template #icon>
+					<RefreshCcw
+						class="w-4 h-4 stroke-1.5 text-ink-gray-7"
+						@click="reloadUser()"
+					/>
+				</template>
+			</Button>
 		</header>
 		<div class="group relative h-[130px] w-full">
 			<img
@@ -42,23 +50,50 @@
 		<div class="mx-auto -mt-10 md:-mt-4 max-w-4xl translate-x-0 px-5">
 			<div class="flex flex-col md:flex-row items-center">
 				<div>
-					<img
-						v-if="profile.data.user_image"
-						:src="profile.data.user_image"
-						class="object-cover h-[100px] w-[100px] rounded-full border-4 border-white object-cover"
-					/>
-					<UserAvatar
-						v-else
-						:user="profile.data"
-						class="object-cover h-[100px] w-[100px] rounded-full border-4 border-white object-cover"
-					/>
+					<div class="relative">
+						<img
+							v-if="profile.data.user_image"
+							:src="profile.data.user_image"
+							class="object-cover h-[100px] w-[100px] rounded-full border-4 border-white object-cover"
+						/>
+						<Tooltip
+							v-if="profile.data.looking_for_job"
+							:text="__('Open to Opportunities')"
+							placement="right"
+						>
+							<div
+								class="absolute bottom-3 right-1 p-0.5 bg-surface-white rounded-full"
+							>
+								<div class="rounded-full bg-surface-green-3 w-fit">
+									<BadgeCheckIcon class="text-ink-white size-5" />
+								</div>
+							</div>
+						</Tooltip>
+					</div>
 				</div>
-				<div class="ml-6">
-					<h2 class="mt-2 text-3xl font-semibold text-ink-gray-9">
+				<div class="ml-6 mt-5">
+					<h2 class="text-3xl font-semibold text-ink-gray-9">
 						{{ profile.data.full_name }}
 					</h2>
-					<div class="mt-2 text-base text-ink-gray-7">
+					<div class="text-base text-ink-gray-7 mt-1">
 						{{ profile.data.headline }}
+					</div>
+					<div class="flex items-center space-x-4 mt-2">
+						<Twitter
+							v-if="profile.data.twitter"
+							class="size-4 text-ink-gray-5 cursor-pointer"
+							@click="navigateTo(profile.data.twitter)"
+						/>
+						<Linkedin
+							v-if="profile.data.linkedin"
+							class="size-4 text-ink-gray-5 cursor-pointer"
+							@click="navigateTo(profile.data.linkedin)"
+						/>
+						<Github
+							v-if="profile.data.github"
+							class="size-4 text-ink-gray-5 cursor-pointer"
+							@click="navigateTo(profile.data.github)"
+						/>
 					</div>
 				</div>
 				<Button
@@ -73,7 +108,7 @@
 				</Button>
 			</div>
 
-			<div class="mb-4 mt-6">
+			<div class="mb-4 mt-10">
 				<TabButtons
 					class="inline-block"
 					:buttons="getTabButtons()"
@@ -92,18 +127,27 @@
 <script setup>
 import {
 	Breadcrumbs,
-	createResource,
 	Button,
+	call,
+	createResource,
 	TabButtons,
+	Tooltip,
 	usePageMeta,
 } from 'frappe-ui'
 import { computed, inject, watch, ref, onMounted, watchEffect } from 'vue'
 import { sessionStore } from '@/stores/session'
-import { Edit } from 'lucide-vue-next'
-import UserAvatar from '@/components/UserAvatar.vue'
+import {
+	BadgeCheckIcon,
+	Edit,
+	Github,
+	Linkedin,
+	RefreshCcw,
+	Twitter,
+} from 'lucide-vue-next'
 import { useRoute, useRouter } from 'vue-router'
-import NoPermission from '@/components/NoPermission.vue'
 import { convertToTitleCase } from '@/utils'
+import UserAvatar from '@/components/UserAvatar.vue'
+import NoPermission from '@/components/NoPermission.vue'
 import EditProfile from '@/components/Modals/EditProfile.vue'
 import EditCoverImage from '@/components/Modals/EditCoverImage.vue'
 
@@ -124,18 +168,14 @@ const props = defineProps({
 
 onMounted(() => {
 	if ($user.data) profile.reload()
-
 	setActiveTab()
 })
 
 const profile = createResource({
-	url: 'frappe.client.get',
-	makeParams(values) {
+	url: 'lms.lms.api.get_profile_details',
+	makeParams() {
 		return {
-			doctype: 'User',
-			filters: {
-				username: props.username,
-			},
+			username: props.username,
 		}
 	},
 })
@@ -191,27 +231,47 @@ const editProfile = () => {
 }
 
 const isSessionUser = () => {
-	return $user.data?.email === profile.data?.email
+	return $user.data?.email === profile.data?.name
+}
+
+const currentUserHasHigherAccess = () => {
+	return $user.data?.is_evaluator || $user.data?.is_moderator
+}
+
+const isEvaluatorOrModerator = () => {
+	return (
+		profile.data?.roles?.includes('Batch Evaluator') ||
+		profile.data?.roles?.includes('Moderator')
+	)
 }
 
 const getTabButtons = () => {
 	let buttons = [{ label: 'About' }, { label: 'Certificates' }]
 	if ($user.data?.is_moderator) buttons.push({ label: 'Roles' })
-	if (
-		isSessionUser() &&
-		($user.data?.is_evaluator || $user.data?.is_moderator)
-	) {
+
+	if (currentUserHasHigherAccess() && isEvaluatorOrModerator()) {
 		buttons.push({ label: 'Slots' })
 		buttons.push({ label: 'Schedule' })
 	}
-
 	return buttons
+}
+
+const reloadUser = () => {
+	call('frappe.sessions.clear').then(() => {
+		$user.reload().then(() => {
+			profile.reload()
+		})
+	})
+}
+
+const navigateTo = (url) => {
+	window.open(url, '_blank')
 }
 
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: __('People'),
+			label: 'People',
 		},
 		{
 			label: profile.data?.full_name,

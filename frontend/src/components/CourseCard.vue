@@ -5,7 +5,7 @@
 		style="min-height: 350px"
 	>
 		<div
-			class="w-[100%] h-[168px] bg-cover bg-center bg-no-repeat"
+			class="w-[100%] h-[168px] bg-cover bg-center bg-no-repeat border-t border-x rounded-t-md"
 			:style="
 				course.image
 					? { backgroundImage: `url('${encodeURI(course.image)}')` }
@@ -62,7 +62,7 @@
 					<Tooltip :text="__('Enrolled Students')">
 						<span class="flex items-center">
 							<Users class="h-4 w-4 stroke-1.5 mr-1" />
-							{{ course.enrollments }}
+							{{ formatAmount(course.enrollments) }}
 						</span>
 					</Tooltip>
 				</div>
@@ -116,28 +116,31 @@
 					<CourseInstructors :instructors="course.instructors" />
 				</div>
 
-				<div v-if="course.paid_course" class="font-semibold">
-					{{ course.price }}
-				</div>
+				<div class="flex items-center space-x-2">
+					<div v-if="course.paid_course" class="font-semibold">
+						{{ course.price }}
+					</div>
 
-				<Tooltip
-					v-if="course.paid_certificate || course.enable_certification"
-					:text="__('Get Certified')"
-				>
-					<GraduationCap class="size-5 stroke-1.5 text-ink-gray-7" />
-				</Tooltip>
+					<Tooltip
+						v-if="course.paid_certificate || course.enable_certification"
+						:text="__('Get Certified')"
+					>
+						<GraduationCap class="size-5 stroke-1.5 text-ink-gray-7" />
+					</Tooltip>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script setup>
 import { Award, BookOpen, GraduationCap, Star, Users } from 'lucide-vue-next'
-import UserAvatar from '@/components/UserAvatar.vue'
 import { sessionStore } from '@/stores/session'
 import { Tooltip } from 'frappe-ui'
-import { theme } from '@/utils/theme'
+import { formatAmount } from '@/utils'
 import CourseInstructors from '@/components/CourseInstructors.vue'
+import UserAvatar from '@/components/UserAvatar.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
+import colors from '@/utils/frappe-ui-colors.json'
 
 const { user } = sessionStore()
 
@@ -149,19 +152,10 @@ const props = defineProps({
 })
 
 const getGradientColor = () => {
+	let theme = localStorage.getItem('theme') == 'dark' ? 'darkMode' : 'lightMode'
 	let color = props.course.card_gradient?.toLowerCase() || 'blue'
-	let colorMap = theme.backgroundColor[color]
+	let colorMap = colors[theme][color]
 	return `linear-gradient(to top right, black, ${colorMap[400]})`
-	/* return `bg-gradient-to-br from-${color}-100 via-${color}-200 to-${color}-400` */
-	/* return `linear-gradient(to bottom right, ${colorMap[100]}, ${colorMap[400]})` */
-	/* return `radial-gradient(ellipse at 80% 20%, black 20%, ${colorMap[500]} 100%)` */
-	/* return `radial-gradient(ellipse at 30% 70%, black 50%, ${colorMap[500]} 100%)` */
-	/* return `radial-gradient(ellipse at 80% 20%, ${colorMap[100]} 0%, ${colorMap[300]} 50%, ${colorMap[500]} 100%)` */
-	/* return `conic-gradient(from 180deg at 50% 50%, ${colorMap[100]} 0%, ${colorMap[200]} 50%, ${colorMap[400]} 100%)` */
-	/* return `linear-gradient(135deg, ${colorMap[100]}, ${colorMap[300]}), linear-gradient(120deg, rgba(255,255,255,0.4) 0%, transparent 60%) ` */
-	/* return `radial-gradient(circle at 20% 30%, ${colorMap[100]} 0%, transparent 40%),
-		radial-gradient(circle at 80% 40%, ${colorMap[200]} 0%, transparent 50%),
-		linear-gradient(135deg, ${colorMap[300]} 0%, ${colorMap[400]} 100%);` */
 }
 </script>
 <style>

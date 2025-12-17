@@ -30,14 +30,14 @@
 				<div class="notification text-ink-gray-7" v-html="log.subject"></div>
 			</div>
 			<div class="flex items-center space-x-2">
-				<Link
+				<a
 					v-if="log.link"
-					:to="log.link"
+					:href="log.link"
 					@click="(e) => handleMarkAsRead(e, log.name)"
 					class="text-ink-gray-5 font-medium text-sm hover:text-ink-gray-7"
 				>
 					{{ __('View') }}
-				</Link>
+				</a>
 				<Button
 					variant="ghost"
 					v-if="!log.read"
@@ -60,7 +60,6 @@ import {
 	createListResource,
 	createResource,
 	Breadcrumbs,
-	Link,
 	TabButtons,
 	Button,
 	usePageMeta,
@@ -144,7 +143,7 @@ onUnmounted(() => {
 const breadcrumbs = computed(() => {
 	let crumbs = [
 		{
-			label: __('Notifications'),
+			label: 'Notifications',
 			route: {
 				name: 'Notifications',
 			},
@@ -155,7 +154,7 @@ const breadcrumbs = computed(() => {
 
 usePageMeta(() => {
 	return {
-		title: __('Notifications'),
+		title: 'Notifications',
 		icon: brand.favicon,
 	}
 })

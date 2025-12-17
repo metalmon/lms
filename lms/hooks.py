@@ -65,6 +65,9 @@ after_install = "lms.install.after_install"
 after_sync = "lms.install.after_sync"
 before_uninstall = "lms.install.before_uninstall"
 setup_wizard_requires = "assets/lms/js/setup_wizard.js"
+after_migrate = [
+	"lms.sqlite.build_index_in_background",
+]
 
 # Desk Notifications
 # ------------------
@@ -102,7 +105,10 @@ doc_events = {
 			"lms.lms.doctype.lms_badge.lms_badge.process_badges",
 		]
 	},
-	"Discussion Reply": {"after_insert": "lms.lms.utils.handle_notifications"},
+	"Discussion Reply": {
+		"after_insert": "lms.lms.utils.handle_notifications",
+		"validate": "lms.lms.utils.validate_discussion_reply",
+	},
 	"Notification Log": {"on_change": "lms.lms.utils.publish_notifications"},
 	"User": {
 		"validate": "lms.lms.user.validate_username_duplicates",
@@ -113,6 +119,9 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 scheduler_events = {
+	"all": [
+		"lms.sqlite.build_index_in_background",
+	],
 	"hourly": [
 		"lms.lms.doctype.lms_certificate_request.lms_certificate_request.schedule_evals",
 		"lms.lms.api.update_course_statistics",
@@ -189,7 +198,6 @@ update_website_context = [
 
 jinja = {
 	"methods": [
-		"lms.lms.utils.get_signup_optin_checks",
 		"lms.lms.utils.get_tags",
 		"lms.lms.utils.get_lesson_count",
 		"lms.lms.utils.get_instructors",
@@ -241,6 +249,8 @@ signup_form_template = "lms.plugins.show_custom_signup"
 
 on_login = "lms.lms.user.on_login"
 
+get_site_info = "lms.activation.get_site_info"
+
 add_to_apps_screen = [
 	{
 		"name": "lms",
@@ -250,3 +260,5 @@ add_to_apps_screen = [
 		"has_permission": "lms.lms.api.check_app_permission",
 	}
 ]
+
+sqlite_search = ["lms.sqlite.LearningSearch"]
