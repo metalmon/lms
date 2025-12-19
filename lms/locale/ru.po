@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: jannat@frappe.io\n"
-"POT-Creation-Date: 2025-12-17 20:58+0000\n"
-"PO-Revision-Date: 2025-12-18 00:56+0300\n"
+"POT-Creation-Date: 2025-12-19 08:25+0000\n"
+"PO-Revision-Date: 2025-12-19 11:31+0300\n"
 "Last-Translator: AlexKuzin <dev@olimpicfresh.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -2945,7 +2945,7 @@ msgstr "Frappe"
 #. Desktop Icon label (parent: lms)
 #: lms/desktop_icon/frappe_lms.json lms/hooks.py:5
 msgid "Frappe LMS"
-msgstr "Frappe LMS"
+msgstr "Обучение"
 
 #: lms/hooks.py:7
 msgid "Frappe LMS App"
@@ -7748,7 +7748,7 @@ msgstr "Вы уже записаны в эту группу."
 msgid "You are not a member of this batch. Please checkout our upcoming batches."
 msgstr "Вы не являетесь участником этой группы. Пожалуйста, ознакомьтесь с нашими группами."
 
-#: lms/lms/doctype/lms_batch_old/lms_batch_old.py:20
+#: lms/lms/doctype/lms_batch_old/lms_batch_old.py:29
 msgid "You are not a mentor of the course {0}"
 msgstr "Вы не являетесь наставником курса {0}"
 
