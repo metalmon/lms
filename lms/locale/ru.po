@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: jannat@frappe.io\n"
-"POT-Creation-Date: 2025-12-19 08:25+0000\n"
-"PO-Revision-Date: 2025-12-19 11:31+0300\n"
+"POT-Creation-Date: 2026-01-04 21:21+0000\n"
+"PO-Revision-Date: 2026-01-05 00:21+0300\n"
 "Last-Translator: AlexKuzin <dev@olimpicfresh.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -2157,6 +2157,12 @@ msgstr "Удалив эту главу, Вы также удалите все е
 msgid "Deleting this lesson will permanently remove it from the course. This action cannot be undone. Are you sure you want to continue?"
 msgstr "Удалив этот урок, Вы навсегда удалите его из курса. Это действие нельзя отменить. Вы уверены, что хотите продолжить?"
 
+#. Label of the medium (Select) field in DocType 'LMS Batch'
+#: frontend/src/pages/BatchForm.vue:194
+#: lms/lms/doctype/lms_batch/lms_batch.json
+msgid "Delivery Format"
+msgstr "Формат"
+
 #. Label of the description (Text Editor) field in DocType 'Job Opportunity'
 #. Label of a field in the job-opportunity Web Form
 #. Label of the description (Small Text) field in DocType 'Certification'
@@ -4256,12 +4262,6 @@ msgstr "Максимум попыток"
 msgid "Maximum Attempts"
 msgstr "Максимальное количество попыток"
 
-#. Label of the medium (Select) field in DocType 'LMS Batch'
-#: frontend/src/pages/BatchForm.vue:194
-#: lms/lms/doctype/lms_batch/lms_batch.json
-msgid "Medium"
-msgstr "Медиа"
-
 #. Label of the medium (Data) field in DocType 'User'
 #: lms/fixtures/custom_field.json
 msgid "Medium ID"
@@ -4932,7 +4932,7 @@ msgstr "Идентификатор клиента OAuth"
 msgid "Office close to Home"
 msgstr "Офис рядом с домом"
 
-#. Option for the 'Medium' (Select) field in DocType 'LMS Batch'
+#. Option for the 'Delivery Format' (Select) field in DocType 'LMS Batch'
 #: lms/lms/doctype/lms_batch/lms_batch.json
 msgid "Offline"
 msgstr "Offline"
@@ -4950,7 +4950,7 @@ msgstr "Еще раз поздравляю с этим значительным 
 msgid "Once the moderator grades your submission, you'll find the details here."
 msgstr "Как только модератор оценит вашу заявку, вы найдете подробную информацию здесь."
 
-#. Option for the 'Medium' (Select) field in DocType 'LMS Batch'
+#. Option for the 'Delivery Format' (Select) field in DocType 'LMS Batch'
 #: lms/lms/doctype/lms_batch/lms_batch.json
 msgid "Online"
 msgstr "Online"

@@ -191,7 +191,7 @@
 									value: 'Offline',
 								},
 							]"
-							:label="__('Medium')"
+							:label="__('Delivery Format')"
 							class="mb-4"
 						/>
 						<Link

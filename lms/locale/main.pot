@@ -1,14 +1,14 @@
 # Translations template for Frappe LMS.
-# Copyright (C) 2025 Frappe
+# Copyright (C) 2026 Frappe
 # This file is distributed under the same license as the Frappe LMS project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Frappe LMS VERSION\n"
 "Report-Msgid-Bugs-To: jannat@frappe.io\n"
-"POT-Creation-Date: 2025-12-19 08:25+0000\n"
-"PO-Revision-Date: 2025-12-19 08:25+0000\n"
+"POT-Creation-Date: 2026-01-04 21:21+0000\n"
+"PO-Revision-Date: 2026-01-04 21:21+0000\n"
 "Last-Translator: jannat@frappe.io\n"
 "Language-Team: jannat@frappe.io\n"
 "MIME-Version: 1.0\n"
@@ -2160,6 +2160,12 @@ msgstr ""
 msgid "Deleting this lesson will permanently remove it from the course. This action cannot be undone. Are you sure you want to continue?"
 msgstr ""
 
+#. Label of the medium (Select) field in DocType 'LMS Batch'
+#: frontend/src/pages/BatchForm.vue:194
+#: lms/lms/doctype/lms_batch/lms_batch.json
+msgid "Delivery Format"
+msgstr ""
+
 #. Label of the description (Text Editor) field in DocType 'Job Opportunity'
 #. Label of a field in the job-opportunity Web Form
 #. Label of the description (Small Text) field in DocType 'Certification'
@@ -4260,12 +4266,6 @@ msgstr ""
 msgid "Maximum Attempts"
 msgstr ""
 
-#. Label of the medium (Select) field in DocType 'LMS Batch'
-#: frontend/src/pages/BatchForm.vue:194
-#: lms/lms/doctype/lms_batch/lms_batch.json
-msgid "Medium"
-msgstr ""
-
 #. Label of the medium (Data) field in DocType 'User'
 #: lms/fixtures/custom_field.json
 msgid "Medium ID"
@@ -4936,7 +4936,7 @@ msgstr ""
 msgid "Office close to Home"
 msgstr ""
 
-#. Option for the 'Medium' (Select) field in DocType 'LMS Batch'
+#. Option for the 'Delivery Format' (Select) field in DocType 'LMS Batch'
 #: lms/lms/doctype/lms_batch/lms_batch.json
 msgid "Offline"
 msgstr ""
@@ -4954,7 +4954,7 @@ msgstr ""
 msgid "Once the moderator grades your submission, you'll find the details here."
 msgstr ""
 
-#. Option for the 'Medium' (Select) field in DocType 'LMS Batch'
+#. Option for the 'Delivery Format' (Select) field in DocType 'LMS Batch'
 #: lms/lms/doctype/lms_batch/lms_batch.json
 msgid "Online"
 msgstr ""
